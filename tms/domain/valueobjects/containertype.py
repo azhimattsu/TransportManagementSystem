@@ -1,7 +1,7 @@
 from enum import IntEnum
 
 
-class ContainerHeight(IntEnum):
+class ContainerType(IntEnum):
     TYPE_DRY = 1
     TYPE_REAFER = 2
     TYPE_OPENTOP = 3
