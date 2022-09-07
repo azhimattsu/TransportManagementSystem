@@ -3,10 +3,11 @@ from ...infrastructure.inmemory.inmemorycontainer import InMemoryContainers
 from ...usecases.containers.containersusecase import ContainersUsecase
 
 
-def Test_ContainsersUsecase():
+def Test_ContainersUsecase():
     usecase = ContainersUsecase(rep=InMemoryContainers())
     response = usecase.getAllData()
-    print(response)
+    for i in response:
+        print(i.code)
 
 
-Test_ContainsersUsecase()
+Test_ContainersUsecase()
