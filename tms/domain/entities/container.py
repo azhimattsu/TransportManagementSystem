@@ -7,7 +7,7 @@ from ...domain.valueobjects.containertype import ContainerType
 from ...domain.valueobjects.tareweight import TareWeight
 
 
-@dataclass(init=False, eq=True, frozen=True)
+@dataclass(init=False, eq=True)
 class Container:
     code: ContainerCode
     type: ContainerType
@@ -21,8 +21,8 @@ class Container:
                  tw: TareWeight,
                  height: ContainerHeight,
                  size: ContainerSize):
-        object.__setattr__(self, "code", code)
-        object.__setattr__(self, "type", type)
-        object.__setattr__(self, "tw", tw)
-        object.__setattr__(self, "height", height)
-        object.__setattr__(self, "size", size)
+        self.code = code
+        self.type = type
+        self.tw = tw
+        self.height = height
+        self.size = size

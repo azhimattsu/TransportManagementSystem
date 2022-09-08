@@ -7,8 +7,8 @@ def Test_ContainersUsecase():
     usecase = ContainersUsecase(rep=InMemoryContainers())
     response = usecase.getAllData()
 
-#    for i in response:
-#        print(i.code)
+    for i in response.containers:
+        print(i.code)
 
 
 Test_ContainersUsecase()
