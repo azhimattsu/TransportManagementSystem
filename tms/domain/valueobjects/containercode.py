@@ -7,3 +7,7 @@ class ContainerCode:
 
     def __init__(self, value: str):
         object.__setattr__(self, "value", value)
+
+    @property
+    def container_code(self) -> str:
+        return self.value

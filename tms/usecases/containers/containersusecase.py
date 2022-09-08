@@ -1,3 +1,4 @@
+from .getall.containergetallresult import ContainerGetAllResult
 from ...usecases.containers.containerdata import ContainerData
 from ...domain.repositories.containersrepository import ContainersRepository
 
@@ -11,8 +12,10 @@ class ContainersUsecase:
     def getAllData(self) -> list[ContainerData]:
         containerlist = list()
         values = self.containerRep.GetAllData()
-        for value in values:
-            containerlist.append(ContainerData(value))
-        return containerlist
+        print(values[0].code.value)
 
-#        return asyncio.run(self.containerRep.GetAllData())
+#        for value in values:
+#            containerlist.append(ContainerData(value))
+
+        result = ContainerGetAllResult(containerlist)
+        return result
