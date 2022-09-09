@@ -1,6 +1,3 @@
-import imp
-
-
 import copy
 from tms.usecases.containers.containerdata import ContainerData
 
