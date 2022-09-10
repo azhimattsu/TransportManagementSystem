@@ -1,3 +1,4 @@
+from typing import Optional
 from ...domain.valueobjects.containersize import ContainerSize
 from ...domain.valueobjects.containerheight import ContainerHeight
 from ...domain.valueobjects.tareweight import TareWeight
@@ -27,6 +28,6 @@ class InMemoryContainers(ContainersRepository):
     def GetAllData(self) -> list[Container]:
         return self.containers
 
-    def SearchDataByCode(self, code: ContainerCode) -> Container:
+    def SearchDataByCode(self, code: ContainerCode) -> Optional[Container]:
         container = next((f for f in self.containers if f.code == code), None)
         return container
