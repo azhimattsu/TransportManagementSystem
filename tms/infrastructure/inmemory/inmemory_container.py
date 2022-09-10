@@ -4,27 +4,29 @@ from ...domain.valueobjects.tareweight import TareWeight
 from ...domain.valueobjects.containertype import ContainerType
 from ...domain.valueobjects.containercode import ContainerCode
 from ...domain.entities.container import Container
-from ...domain.repositories.containersrepository import ContainersRepository
+from ...domain.repositories.containers_repository import ContainersRepository
 
 
 class InMemoryContainers(ContainersRepository):
+    containers: list[Container] = []
 
     def __init__(self):
-        print("InMemoryContainers")
-
-    def GetAllData(self) -> list[Container]:
-        values = list()
-
         container1 = Container(ContainerCode("111111"),
                                ContainerType.TYPE_DRY,
                                TareWeight(3500),
                                ContainerHeight.HEIGHT_HIGH,
                                ContainerSize.SIZE_LONG)
-        values.append(container1)
+        self.containers.append(container1)
         container2 = Container(ContainerCode("222222"),
                                ContainerType.TYPE_DRY,
                                TareWeight(3500),
                                ContainerHeight.HEIGHT_NORMAL,
                                ContainerSize.SIZE_NORMAL)
-        values.append(container2)
-        return values
+        self.containers.append(container2)
+
+    def GetAllData(self) -> list[Container]:
+        return self.containers
+
+    def SearchDataByCode(self, code: ContainerCode) -> Container:
+        container = next((f for f in self.containers if f.code == code), None)
+        return container
