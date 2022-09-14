@@ -12,6 +12,7 @@ class InMemoryContainers(ContainersRepository):
     containers: list[Container] = []
 
     def __init__(self):
+        self.containers.clear()
         container1 = Container(ContainerCode("111111"),
                                ContainerType.TYPE_DRY,
                                TareWeight(3500),
