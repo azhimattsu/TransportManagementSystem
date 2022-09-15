@@ -10,6 +10,7 @@ class ContainerData:
     tw: int
     height: int
     size: int
+    damage: int
 
     def __init__(self, container: Container):
         self.code = container.code.value
@@ -17,3 +18,4 @@ class ContainerData:
         self.tw = container.tw.value
         self.height = container.height.value
         self.size = container.size.value
+        self.damage = container.damage.value

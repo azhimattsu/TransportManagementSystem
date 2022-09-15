@@ -1,3 +1,4 @@
+from tms.domain.valueobjects.containerdamage import ContainerDamage
 from ...domain.valueobjects.containercode import ContainerCode
 from ...domain.valueobjects.containerheight import ContainerHeight
 from ...domain.valueobjects.containersize import ContainerSize
@@ -31,7 +32,8 @@ def Test_ContainerCompare():
     tw1 = TareWeight(3500)
     height1 = ContainerHeight.HEIGHT_HIGH
     size1 = ContainerSize.HEIGHT_LONG
-    container1 = Container(code1, type1, tw1, height1, size1)
+    damage1 = ContainerDamage.DAMAGE_OK
+    container1 = Container(code1, type1, tw1, height1, size1, damage1)
     print(container1)
 
     code2 = ContainerCode("123456")
@@ -39,7 +41,8 @@ def Test_ContainerCompare():
     tw2 = TareWeight(3500)
     height2 = ContainerHeight.HEIGHT_HIGH
     size2 = ContainerSize.HEIGHT_LONG
-    container2 = Container(code2, type2, tw2, height2, size2)
+    damage2 = ContainerDamage.DAMAGE_OK
+    container2 = Container(code2, type2, tw2, height2, size2, damage2)
     print(container2)
 
     print("check1")

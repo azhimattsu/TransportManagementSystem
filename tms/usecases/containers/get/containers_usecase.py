@@ -22,4 +22,5 @@ class ContainersUsecase:
 
     def getData(self, code: str) -> ContainersGetResult:
         value = self.containerRep.SearchDataByCode(ContainerCode(code))
-        return ContainersGetResult(value)
+        container = ContainerData(value)
+        return ContainersGetResult(container)
