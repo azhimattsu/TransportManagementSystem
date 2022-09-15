@@ -36,3 +36,6 @@ class InMemoryContainers(ContainersRepository):
     def SearchDataByCode(self, code: ContainerCode) -> Optional[Container]:
         container = next((f for f in self.containers if f.code == code), None)
         return container
+
+    def UpdateData(self, container: Container):
+        self.containers.append(container)

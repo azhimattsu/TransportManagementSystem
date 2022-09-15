@@ -14,3 +14,7 @@ class ContainersRepository(metaclass=ABCMeta):
     @abstractclassmethod
     def SearchDataByCode(self, code: ContainerCode) -> Optional[Container]:
         pass
+
+    @abstractclassmethod
+    def UpdateData(self, container: Container):
+        pass
