@@ -16,3 +16,10 @@ async def getContainersAllData():
     containrsGetUseCase = ContainersUsecase(rep=InMemoryContainers())
     containers = containrsGetUseCase.getAllData()
     return containers
+
+
+@app.get("/containers/{container_code}")
+async def getContainersData(container_code: str):
+    containrsGetUseCase = ContainersUsecase(rep=InMemoryContainers())
+    container = containrsGetUseCase.getData(container_code)
+    return container
