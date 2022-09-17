@@ -1,11 +1,9 @@
-from . import containercode
-from . import containerheight
-from . import containersize
-from . import containertype
-from . import tareweight
 
-print(containercode)
-print(containerheight)
-print(containersize)
-print(containertype)
-print(tareweight.TareWeight)
+from . import container
+
+print(container.Code)
+print(container.Height)
+print(container.Size)
+print(container.Type)
+print(container.TareWeight)
+print(container.Damage)

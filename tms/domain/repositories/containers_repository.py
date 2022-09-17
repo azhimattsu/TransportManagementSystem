@@ -2,19 +2,20 @@ from abc import ABCMeta
 from abc import abstractclassmethod
 from typing import Optional
 
-from ..valueobjects.containercode import ContainerCode
-from ..entities.container import Container
+from ..valueobjects import container
+from ..entities.container import ContainerEntity
 
 
 class ContainersRepository(metaclass=ABCMeta):
     @abstractclassmethod
-    def GetAllData(self) -> list[Container]:
+    def GetAllData(self) -> list[ContainerEntity]:
         pass
 
     @abstractclassmethod
-    def SearchDataByCode(self, code: ContainerCode) -> Optional[Container]:
+    def SearchDataByCode(self,
+                         code: container.Code) -> Optional[ContainerEntity]:
         pass
 
     @abstractclassmethod
-    def UpdateData(self, container: Container):
+    def UpdateData(self, container: ContainerEntity):
         pass

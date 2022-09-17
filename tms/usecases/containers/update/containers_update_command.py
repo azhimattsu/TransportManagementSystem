@@ -1,9 +1,9 @@
 import copy
-from ..containerdata import ContainerData
+from ..containermodel import ContainerModel
 
 
 class ContainersUpdateCommand:
-    container: ContainerData
+    container: ContainerModel
 
-    def __init__(self, container: ContainerData):
+    def __init__(self, container: ContainerModel):
         self.container = copy.deepcopy(container)

@@ -1,29 +1,23 @@
 from dataclasses import dataclass
-
-from ...domain.valueobjects.containerdamage import ContainerDamage
-from ...domain.valueobjects.containercode import ContainerCode
-from ...domain.valueobjects.containerheight import ContainerHeight
-from ...domain.valueobjects.containersize import ContainerSize
-from ...domain.valueobjects.containertype import ContainerType
-from ...domain.valueobjects.tareweight import TareWeight
+from ..valueobjects import container
 
 
 @dataclass(init=False, eq=True)
-class Container:
-    code: ContainerCode
-    type: ContainerType
-    tw: TareWeight
-    height: ContainerHeight
-    size: ContainerSize
-    damage: ContainerDamage
+class ContainerEntity:
+    code: container.Code
+    type: container.Type
+    tw: container.TareWeight
+    height: container.Height
+    size: container.Size
+    damage: container.Damage
 
     def __init__(self,
-                 code: ContainerCode,
-                 type: ContainerType,
-                 tw: TareWeight,
-                 height: ContainerHeight,
-                 size: ContainerSize,
-                 damage: ContainerDamage):
+                 code: container.Code,
+                 type: container.Type,
+                 tw: container.TareWeight,
+                 height: container.Height,
+                 size: container.Size,
+                 damage: container.Damage):
         self.code = code
         self.type = type
         self.tw = tw

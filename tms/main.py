@@ -1,9 +1,7 @@
 from fastapi import FastAPI
 
-from tms.usecases.containers.update.containers_update_command import ContainersUpdateCommand
-
-from .usecases.containers.containerdata import ContainerData
-
+from .usecases.containers.update.containers_update_command import ContainersUpdateCommand
+from .usecases.containers.containermodel import ContainerModel
 from .infrastructure.inmemory.inmemory_container import InMemoryContainers
 from .usecases.containers.containers_usecase import ContainersUsecase
 
@@ -30,7 +28,7 @@ async def getContainersData(container_code: str):
 
 
 @app.post("/container/")
-async def putContainerData(container: ContainerData):
+async def putContainerData(container: ContainerModel):
     containrsUseCase = ContainersUsecase(rep=InMemoryContainers())
     command = ContainersUpdateCommand(container)
     containrsUseCase.updateData(command)

@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass(init=False, eq=True)
-class ContainerData:
+class ContainerModel:
     code: str
     type: int
     tw: int

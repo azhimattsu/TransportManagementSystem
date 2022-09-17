@@ -1,5 +1,5 @@
-from ...domain.valueobjects.containercode import ContainerCode
-from .containerdata_dto import ContainerDataDto
+from ...domain.valueobjects import container
+from .containerdata_dto import ContainerModelDto
 from .update.containers_update_command import ContainersUpdateCommand
 from .get.containers_getresult import ContainersGetResult
 from .get.containers_getallresult import ContainersGetAllResult
@@ -17,15 +17,15 @@ class ContainersUsecase:
         values = self.containerRep.GetAllData()
 
         for value in values:
-            containerlist.append(ContainerDataDto.fromEntity(value))
+            containerlist.append(ContainerModelDto.fromEntity(value))
 
         return ContainersGetAllResult(containerlist)
 
     def getData(self, code: str) -> ContainersGetResult:
-        value = self.containerRep.SearchDataByCode(ContainerCode(code))
-        container = ContainerDataDto.fromEntity(value)
-        return ContainersGetResult(container)
+        value = self.containerRep.SearchDataByCode(container.Code(code))
+        containerdata = ContainerModelDto.fromEntity(value)
+        return ContainersGetResult(containerdata)
 
     def updateData(self, command: ContainersUpdateCommand):
-        entity = ContainerDataDto.toEntity(command.container)
+        entity = ContainerModelDto.toEntity(command.container)
         self.containerRep.UpdateData(entity)

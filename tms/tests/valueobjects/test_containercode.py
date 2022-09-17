@@ -1,13 +1,13 @@
-from ...domain.valueobjects.containercode import ContainerCode
+from ...domain.valueobjects import container
 
 
 def Test_ContainerCode():
-    containercode = ContainerCode("123456")
+    containercode = container.Code("123456")
     print(containercode.value)
 
 
 def Test_ContainerCode_ng1():
-    containercode = ContainerCode("")
+    containercode = container.Code("")
     containercode.value = "AAAAAA"
     print(containercode)
 

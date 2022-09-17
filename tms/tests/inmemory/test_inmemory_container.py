@@ -1,4 +1,4 @@
-from ...domain.valueobjects.containercode import ContainerCode
+from ...domain.valueobjects import container
 from ...infrastructure.inmemory.inmemory_container import InMemoryContainers
 
 
@@ -12,7 +12,7 @@ def Test_InMemoryContainers_GetAllData():
 
 def Test_InMemoryContainers_GetData():
     rep = InMemoryContainers()
-    value = rep.SearchDataByCode(ContainerCode("222222"))
+    value = rep.SearchDataByCode(container.Code("222222"))
     print(value)
 
 

@@ -1,9 +1,9 @@
 import copy
-from ..containerdata import ContainerData
+from ..containermodel import ContainerModel
 
 
 class ContainersGetAllResult:
-    containers: list[ContainerData]
+    containers: list[ContainerModel]
 
-    def __init__(self, containers: list[ContainerData]):
+    def __init__(self, containers: list[ContainerModel]):
         self.containers = copy.deepcopy(containers)

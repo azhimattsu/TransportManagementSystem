@@ -1,8 +1,8 @@
-from ...domain.valueobjects.tareweight import TareWeight
+from ...domain.valueobjects import container
 
 
 def Test_TareWeight():
-    tareweight = TareWeight(3750)
+    tareweight = container.TareWeight(3750)
     print(tareweight)
 
 
