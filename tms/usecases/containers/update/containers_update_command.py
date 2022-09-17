@@ -2,7 +2,7 @@ import copy
 from ..containerdata import ContainerData
 
 
-class ContainersGetResult:
+class ContainersUpdateCommand:
     container: ContainerData
 
     def __init__(self, container: ContainerData):

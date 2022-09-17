@@ -1,7 +1,5 @@
 from dataclasses import dataclass
 
-from ...domain.entities.container import Container
-
 
 @dataclass(init=False, eq=True)
 class ContainerData:
@@ -12,10 +10,16 @@ class ContainerData:
     size: int
     damage: int
 
-    def __init__(self, container: Container):
-        self.code = container.code.value
-        self.type = container.type.value
-        self.tw = container.tw.value
-        self.height = container.height.value
-        self.size = container.size.value
-        self.damage = container.damage.value
+    def __init__(self,
+                 code: str,
+                 type: int,
+                 tw: int,
+                 height: int,
+                 size: int,
+                 damage: int):
+        self.code = code
+        self.type = type
+        self.tw = tw
+        self.height = height
+        self.size = size
+        self.damage = damage

@@ -1,5 +1,5 @@
 import copy
-from tms.usecases.containers.containerdata import ContainerData
+from ..containerdata import ContainerData
 
 
 class ContainersGetAllResult:

@@ -39,3 +39,4 @@ class InMemoryContainers(ContainersRepository):
 
     def UpdateData(self, container: Container):
         self.containers.append(container)
+        print(self.containers)

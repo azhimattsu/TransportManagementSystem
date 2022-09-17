@@ -1,6 +1,6 @@
 
 from ...infrastructure.inmemory.inmemory_container import InMemoryContainers
-from ...usecases.containers.get.containers_usecase import ContainersUsecase
+from ...usecases.containers.containers_usecase import ContainersUsecase
 
 
 def Test_ContainersUsecase_GetAllData():
