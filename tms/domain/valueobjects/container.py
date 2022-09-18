@@ -12,7 +12,7 @@ class Code:
     def __init__(self, value: str):
         if len(value) != 11:
             item = ExceptionItemDetail("container", "code", value, "コンテナ番号は11桁で指定してください")
-            raise ArgumentOutRangeError(item.message, item)
+            raise ArgumentOutRangeError("Validation Error", item)
         self.value = value
 
 
