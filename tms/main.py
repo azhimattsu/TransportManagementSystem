@@ -1,9 +1,52 @@
+import copy
 from fastapi import FastAPI
+from fastapi import status
+from fastapi import Request
+from fastapi import Response
+from fastapi.responses import JSONResponse
+
+from starlette.middleware.base import BaseHTTPMiddleware
+from .domain.helpers.exception import DomainException
 
 from .usecases.containers.update.containers_update_command import ContainersUpdateCommand
 from .usecases.containers.containermodel import ContainerModel
 from .infrastructure.inmemory.inmemory_container import InMemoryContainers
 from .usecases.containers.containers_usecase import ContainersUsecase
+
+
+class CustomHttpException(Exception):
+    status_code: int
+    exception: DomainException
+    detail: dict
+
+    def __init__(self, status_code: int, exception: DomainException):
+        self.status_code = status_code
+        self.exception = copy.deepcopy(exception)
+        self.detail = {
+            "status": status_code,
+            "message": "error",
+        }
+        detail1 = {0: {
+                "code": status_code,
+                "item": "container",
+                "field": "code",
+                "message": self.exception.getMessage()
+            }
+            }
+        self.detail["errors"] = detail1
+#        print(self.detail["errors"][0])
+
+
+class HttpRequestMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next) -> Response:
+        try:
+            response: Response = await call_next(request)
+        except CustomHttpException as ce:
+            # カスタム例外
+            response = JSONResponse(ce.detail, status_code=ce.status_code)
+
+        return response
+
 
 app = FastAPI()
 
@@ -29,6 +72,16 @@ async def getContainersData(container_code: str):
 
 @app.post("/container/")
 async def putContainerData(container: ContainerModel):
-    containrsUseCase = ContainersUsecase(rep=InMemoryContainers())
-    command = ContainersUpdateCommand(container)
-    containrsUseCase.updateData(command)
+    try:
+        containrsUseCase = ContainersUsecase(rep=InMemoryContainers())
+        command = ContainersUpdateCommand(container)
+        containrsUseCase.updateData(command)
+    except DomainException as e:
+        raise CustomHttpException(status_code=status.HTTP_418_IM_A_TEAPOT,
+                                  exception=e)
+
+#        raise HTTPException(status_code=status.HTTP_418_IM_A_TEAPOT,
+#                            detail="TEST")
+
+
+app.add_middleware(HttpRequestMiddleware)
