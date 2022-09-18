@@ -1,28 +1,28 @@
 
+import copy
 
-class DomainException(Exception):
-    kind: str
+
+class ExceptionItemDetail:
     item: str
+    field: str
     value: str
     message: str
 
-    def __init__(self, kind: str, item: str, value: str, message: str):
-        self.kind = kind
+    def __init__(self, item: str, field: str, value: str, message: str):
         self.item = item
+        self.field = field
         self.value = value
         self.message = message
 
-#    def __str__(self):
-#        return "{0} ({1}) kind:{2} item:{3}".format(self.message,
-#                                                    self.value,
-#                                                    self.kind,
-#                                                    self.item)
 
-    def getMessage(self):
-        return "{0} ({1}) kind:{2} item:{3}".format(self.message,
-                                                    self.value,
-                                                    self.kind,
-                                                    self.item)
+class DomainException(Exception):
+    message: str
+    detail: ExceptionItemDetail = None
+
+    def __init__(self, message: str, itemdetail: ExceptionItemDetail = None):
+        self.message = message
+        if itemdetail is not None:
+            self.detail = copy.deepcopy(itemdetail)
 
 
 class ArgumentOutRangeError(DomainException):

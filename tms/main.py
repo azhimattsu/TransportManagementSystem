@@ -24,16 +24,16 @@ class CustomHttpException(Exception):
         self.exception = copy.deepcopy(exception)
         self.detail = {
             "status": status_code,
-            "message": "error",
+            "message": exception.message,
         }
-        detail1 = {0: {
-                "code": status_code,
-                "item": "container",
-                "field": "code",
-                "message": self.exception.getMessage()
+        if self.exception.detail is not None:
+            detail1 = {
+                    "item": self.exception.detail.item,
+                    "field": self.exception.detail.field,
+                    "value": self.exception.detail.value,
+                    "message": self.exception.detail.message
             }
-            }
-        self.detail["errors"] = detail1
+            self.detail["error"] = detail1
 #        print(self.detail["errors"][0])
 
 

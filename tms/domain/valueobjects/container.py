@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from enum import IntEnum
 
 from ...domain.helpers.exception import ArgumentOutRangeError
+from ...domain.helpers.exception import ExceptionItemDetail
 
 
 @dataclass(init=False, eq=True)
@@ -10,10 +11,8 @@ class Code:
 
     def __init__(self, value: str):
         if len(value) != 11:
-            raise ArgumentOutRangeError("contaier",
-                                        "code",
-                                        value,
-                                        "コンテナ番号は11桁で指定してください")
+            item = ExceptionItemDetail("container", "code", value, "コンテナ番号は11桁で指定してください")
+            raise ArgumentOutRangeError(item.message, item)
         self.value = value
 
 
