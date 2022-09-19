@@ -70,7 +70,7 @@ async def getContainersData(container_code: str):
     return container
 
 
-@app.post("/container/")
+@app.put("/containers/")
 async def putContainerData(container: ContainerModel):
     try:
         containrsUseCase = ContainersUsecase(rep=InMemoryContainers())
