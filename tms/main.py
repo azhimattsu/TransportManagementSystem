@@ -77,7 +77,7 @@ async def putContainerData(container: ContainerModel):
         command = ContainersUpdateCommand(container)
         containrsUseCase.updateData(command)
     except DomainException as e:
-        raise CustomHttpException(status_code=status.HTTP_418_IM_A_TEAPOT,
+        raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,
                                   exception=e)
 
 #        raise HTTPException(status_code=status.HTTP_418_IM_A_TEAPOT,
