@@ -4,7 +4,7 @@ from ...infrastructure.inmemory.inmemory_container import InMemoryContainers
 
 def Test_InMemoryContainers_GetAllData():
     rep = InMemoryContainers()
-    values = rep.GetAllData()
+    values = rep.fetch_all_data()
     length = len(values)
     print(length)
     print(values)
@@ -12,7 +12,7 @@ def Test_InMemoryContainers_GetAllData():
 
 def Test_InMemoryContainers_GetData():
     rep = InMemoryContainers()
-    value = rep.SearchDataByCode(container.Code("222222"))
+    value = rep.find_data_bycode(container.Code("222222"))
     print(value)
 
 

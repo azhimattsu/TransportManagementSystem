@@ -59,14 +59,14 @@ async def index():
 @app.get("/containers/")
 async def getContainersAllData():
     containrsGetUseCase = ContainersUsecase(rep=InMemoryContainers())
-    containers = containrsGetUseCase.getAllData()
+    containers = containrsGetUseCase.fetch_all_data()
     return containers
 
 
 @app.get("/containers/{container_code}")
 async def getContainersData(container_code: str):
     containrsGetUseCase = ContainersUsecase(rep=InMemoryContainers())
-    container = containrsGetUseCase.getData(container_code)
+    container = containrsGetUseCase.find_data_bycode(container_code)
     return container
 
 
@@ -75,7 +75,7 @@ async def putContainerData(container: ContainerModel):
     try:
         containrsUseCase = ContainersUsecase(rep=InMemoryContainers())
         command = ContainersUpdateCommand(container)
-        containrsUseCase.updateData(command)
+        containrsUseCase.create_data(command)
     except DomainException as e:
         raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,
                                   exception=e)

@@ -12,20 +12,20 @@ class ContainersUsecase:
     def __init__(self, rep: ContainersRepository):
         self.containerRep = rep
 
-    def getAllData(self) -> ContainersGetAllResult:
+    def fetch_all_data(self) -> ContainersGetAllResult:
         containerlist = list()
-        values = self.containerRep.GetAllData()
+        values = self.containerRep.fetch_all_data()
 
         for value in values:
             containerlist.append(ContainerModelDto.fromEntity(value))
 
         return ContainersGetAllResult(containerlist)
 
-    def getData(self, code: str) -> ContainersGetResult:
-        value = self.containerRep.SearchDataByCode(container.Code(code))
+    def find_data_bycode(self, code: str) -> ContainersGetResult:
+        value = self.containerRep.find_data_bycode(container.Code(code))
         containerdata = ContainerModelDto.fromEntity(value)
         return ContainersGetResult(containerdata)
 
-    def updateData(self, command: ContainersUpdateCommand):
+    def create_data(self, command: ContainersUpdateCommand):
         entity = ContainerModelDto.toEntity(command.container)
-        self.containerRep.UpdateData(entity)
+        self.containerRep.create_data(entity)

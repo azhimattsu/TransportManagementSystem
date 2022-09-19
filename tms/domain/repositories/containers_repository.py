@@ -8,14 +8,14 @@ from ..entities.container import ContainerEntity
 
 class ContainersRepository(metaclass=ABCMeta):
     @abstractclassmethod
-    def GetAllData(self) -> list[ContainerEntity]:
+    def fetch_all_data(self) -> list[ContainerEntity]:
         pass
 
     @abstractclassmethod
-    def SearchDataByCode(self,
+    def find_data_bycode(self,
                          code: container.Code) -> Optional[ContainerEntity]:
         pass
 
     @abstractclassmethod
-    def UpdateData(self, container: ContainerEntity):
+    def create_data(self, container: ContainerEntity):
         pass

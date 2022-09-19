@@ -25,14 +25,14 @@ class InMemoryContainers(ContainersRepository):
                                      container.Damage.DAMAGE_NG)
         self.containers.append(container2)
 
-    def GetAllData(self) -> list[ContainerEntity]:
+    def fetch_all_data(self) -> list[ContainerEntity]:
         return self.containers
 
-    def SearchDataByCode(self,
+    def find_data_bycode(self,
                          code: container.Code) -> Optional[ContainerEntity]:
         container = next((f for f in self.containers if f.code == code), None)
         return container
 
-    def UpdateData(self, container: ContainerEntity):
+    def create_data(self, container: ContainerEntity):
         self.containers.append(container)
         print(self.containers)
