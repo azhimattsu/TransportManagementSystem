@@ -1,11 +1,11 @@
 from dataclasses import dataclass
-from ..valueobjects import container
+from valueobjects import container
 
 
 @dataclass(init=False, eq=True)
 class ContainerEntity:
     code: container.Code
-    type: container.Type
+    type: container.TareWeight
     tw: container.TareWeight
     height: container.Height
     size: container.Size
