@@ -8,10 +8,11 @@ from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from .domain.helpers.exception import DomainException
 
-from .usecases.containers.update.containers_update_command import ContainersUpdateCommand
+from .usecases.containers.create.containers_create_command import ContainersCreateCommand
 from .usecases.containers.containermodel import ContainerModel
 from .infrastructure.inmemory.inmemory_container import InMemoryContainers
-from .usecases.containers.containers_usecase import ContainersUsecase
+from .usecases.containers.get.containers_get_usecase import ContainersGetUsecase
+from .usecases.containers.create.containers_create_usecase import ContainersCreateUsecase
 
 
 class CustomHttpException(Exception):
@@ -58,14 +59,14 @@ async def index():
 
 @app.get("/containers/")
 async def getContainersAllData():
-    containrsGetUseCase = ContainersUsecase(rep=InMemoryContainers())
+    containrsGetUseCase = ContainersGetUsecase(rep=InMemoryContainers())
     containers = containrsGetUseCase.fetch_all_data()
     return containers
 
 
 @app.get("/containers/{container_code}")
 async def getContainersData(container_code: str):
-    containrsGetUseCase = ContainersUsecase(rep=InMemoryContainers())
+    containrsGetUseCase = ContainersGetUsecase(rep=InMemoryContainers())
     container = containrsGetUseCase.find_data_bycode(container_code)
     return container
 
@@ -73,8 +74,8 @@ async def getContainersData(container_code: str):
 @app.put("/containers/")
 async def putContainerData(container: ContainerModel):
     try:
-        containrsUseCase = ContainersUsecase(rep=InMemoryContainers())
-        command = ContainersUpdateCommand(container)
+        containrsUseCase = ContainersCreateUsecase(rep=InMemoryContainers())
+        command = ContainersCreateCommand(container)
         containrsUseCase.create_data(command)
     except DomainException as e:
         raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,

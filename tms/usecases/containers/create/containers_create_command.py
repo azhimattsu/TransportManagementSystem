@@ -2,7 +2,7 @@ import copy
 from ..containermodel import ContainerModel
 
 
-class ContainersUpdateCommand:
+class ContainersCreateCommand:
     container: ContainerModel
 
     def __init__(self, container: ContainerModel):
