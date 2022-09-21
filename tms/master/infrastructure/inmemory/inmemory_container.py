@@ -10,7 +10,7 @@ class InMemoryContainers(ContainersRepository):
 
     def __init__(self):
         self.containers.clear()
-        container1 = ContainerEntity(container.Id("11111-11111-111111"),
+        container1 = ContainerEntity(container.Id("a8d0a2d7-76c5-ad57-dd0b-ee566152441e"),
                                      container.Code("AAAA1111111"),
                                      container.Type.TYPE_DRY,
                                      container.TareWeight(3500),
@@ -18,7 +18,7 @@ class InMemoryContainers(ContainersRepository):
                                      container.Size.SIZE_LONG,
                                      container.Damage.DAMAGE_OK)
         self.containers.append(container1)
-        container2 = ContainerEntity(container.Id("22222-22222-22222"),
+        container2 = ContainerEntity(container.Id("1d02a8b7-a6c4-fe2d-635a-a6829bbef6c7"),
                                      container.Code("BBBB2222222"),
                                      container.Type.TYPE_DRY,
                                      container.TareWeight(3500),
