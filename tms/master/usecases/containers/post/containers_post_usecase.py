@@ -10,5 +10,5 @@ class ContainersPostUsecase:
         self.containerRep = rep
 
     def create_data(self, command: ContainersPostCommand):
-        entity = ContainerModelDto.toEntity(command.container)
+        entity = ContainerModelDto.CreateEntity(command.container)
         self.containerRep.create_data(entity)
