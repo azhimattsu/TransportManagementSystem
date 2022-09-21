@@ -1,4 +1,4 @@
-from ...domain.valueobjects import container
+from tms.master.domain.valueobjects import container
 
 
 def Test_TareWeight():

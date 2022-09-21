@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from valueobjects import container
+from tms.master.domain.valueobjects import container
 
 
 @dataclass(init=False, eq=True)

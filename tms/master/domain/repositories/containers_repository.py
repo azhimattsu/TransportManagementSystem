@@ -2,7 +2,7 @@ from abc import ABCMeta
 from abc import abstractclassmethod
 from typing import Optional
 
-from valueobjects import container
+from tms.master.domain.valueobjects import container
 from ..entities.container import ContainerEntity
 
 

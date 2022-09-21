@@ -6,13 +6,13 @@ from fastapi import Response
 from fastapi.responses import JSONResponse
 
 from starlette.middleware.base import BaseHTTPMiddleware
-from .domain.helpers.exception import DomainException
+from .master.domain.helpers.exception import DomainException
 
-from .usecases.containers.create.containers_create_command import ContainersCreateCommand
-from .usecases.containers.containermodel import ContainerModel
-from .infrastructure.inmemory.inmemory_container import InMemoryContainers
-from .usecases.containers.get.containers_get_usecase import ContainersGetUsecase
-from .usecases.containers.create.containers_create_usecase import ContainersCreateUsecase
+from tms.master.usecases.containers.post.containers_post_command import ContainersPostCommand
+from tms.master.usecases.containers.containermodel import ContainerModel
+from tms.master.infrastructure.inmemory.inmemory_container import InMemoryContainers
+from tms.master.usecases.containers.get.containers_get_usecase import ContainersGetUsecase
+from tms.master.usecases.containers.post.containers_post_usecase import ContainersPostUsecase
 
 
 class CustomHttpException(Exception):
@@ -74,8 +74,8 @@ async def getContainersData(container_code: str):
 @app.put("/containers/")
 async def putContainerData(container: ContainerModel):
     try:
-        containrsUseCase = ContainersCreateUsecase(rep=InMemoryContainers())
-        command = ContainersCreateCommand(container)
+        containrsUseCase = ContainersPostUsecase(rep=InMemoryContainers())
+        command = ContainersPostCommand(container)
         containrsUseCase.create_data(command)
     except DomainException as e:
         raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,
