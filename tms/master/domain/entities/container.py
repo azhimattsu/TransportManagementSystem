@@ -6,7 +6,7 @@ from tms.master.domain.valueobjects import container
 class ContainerEntity:
     id: container.Id
     code: container.Code
-    type: container.TareWeight
+    type: container.type
     tw: container.TareWeight
     height: container.Height
     size: container.Size
