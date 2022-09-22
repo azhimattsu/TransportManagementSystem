@@ -1,5 +1,5 @@
 import copy
-from ..containermodel import ContainerModel
+from tms.master.usecases.containers.containermodel import ContainerModel
 
 
 class ContainersGetAllResult:

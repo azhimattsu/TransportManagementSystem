@@ -10,6 +10,8 @@ class ContainerModel:
     height: int
     size: int
     damage: int
+    createuser: str
+    updateuser: str
 
     def __init__(self,
                  id: str,
@@ -18,7 +20,9 @@ class ContainerModel:
                  tw: int,
                  height: int,
                  size: int,
-                 damage: int):
+                 damage: int,
+                 createuser: str,
+                 updateuser: str):
         self.id = id
         self.code = code
         self.type = type
@@ -26,3 +30,5 @@ class ContainerModel:
         self.height = height
         self.size = size
         self.damage = damage
+        self.createuser = createuser
+        self.updateuser = updateuser

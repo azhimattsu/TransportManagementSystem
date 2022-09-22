@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from ....domain.helpers.exception import ArgumentOutRangeError
-from ....domain.helpers.exception import ExceptionItemDetail
+from tms.master.domain.helpers.exception import ArgumentOutRangeError
+from tms.master.domain.helpers.exception import ExceptionItemDetail
 
 
 @dataclass(init=False, eq=True)

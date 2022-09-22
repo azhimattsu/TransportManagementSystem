@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass(init=False, eq=True)
-class Id:
+class MailAddress:
     value: str = ""
 
     def __init__(self, value: str):

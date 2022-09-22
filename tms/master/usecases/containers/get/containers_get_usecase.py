@@ -1,8 +1,8 @@
-from ....domain.valueobjects import container
-from ..containermodel_dto import ContainerModelDto
+from tms.master.domain.valueobjects import container
+from tms.master.usecases.containers.containermodel_dto import ContainerModelDto
 from .containers_getresult import ContainersGetResult
 from .containers_getallresult import ContainersGetAllResult
-from ....domain.repositories.containers_repository import ContainersRepository
+from tms.master.domain.repositories.containers_repository import ContainersRepository
 
 
 class ContainersGetUsecase:

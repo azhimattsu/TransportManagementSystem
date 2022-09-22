@@ -11,6 +11,8 @@ class ContainerEntity:
     height: container.Height
     size: container.Size
     damage: container.Damage
+    createuser: container.mailaddress
+    updateuser: container.mailaddress
 
     def __init__(self,
                  id: container.Id,
@@ -19,7 +21,9 @@ class ContainerEntity:
                  tw: container.TareWeight,
                  height: container.Height,
                  size: container.Size,
-                 damage: container.Damage):
+                 damage: container.Damage,
+                 createuser: container.mailaddress,
+                 updateuser: container.mailaddress):
         self.id = id
         self.code = code
         self.type = type
@@ -27,3 +31,5 @@ class ContainerEntity:
         self.height = height
         self.size = size
         self.damage = damage
+        self.createuser = createuser
+        self.updateuser = updateuser

@@ -3,7 +3,7 @@ from abc import abstractclassmethod
 from typing import Optional
 
 from tms.master.domain.valueobjects import container
-from ..entities.container import ContainerEntity
+from tms.master.domain.entities.container import ContainerEntity
 
 
 class ContainersRepository(metaclass=ABCMeta):
