@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from tms.master.domain.valueobjects import container
+from tms.common.domain.valueobjects import common
 
 
 @dataclass(init=False, eq=True)
@@ -13,6 +14,8 @@ class ContainerEntity:
     damage: container.Damage
     createuser: container.mailaddress
     updateuser: container.mailaddress
+    create_at: common.CDateTime
+    update_at: common.CDateTime
 
     def __init__(self,
                  id: container.Id,
@@ -23,7 +26,9 @@ class ContainerEntity:
                  size: container.Size,
                  damage: container.Damage,
                  createuser: container.mailaddress,
-                 updateuser: container.mailaddress):
+                 updateuser: container.mailaddress,
+                 create_at: common.CDateTime,
+                 update_at: common.CDateTime):
         self.id = id
         self.code = code
         self.type = type
@@ -33,3 +38,5 @@ class ContainerEntity:
         self.damage = damage
         self.createuser = createuser
         self.updateuser = updateuser
+        self.create_at = create_at
+        self.update_at = update_at

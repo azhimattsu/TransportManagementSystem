@@ -1,3 +1,4 @@
+from tms.common.domain.valueobjects import common
 from tms.master.domain.services.create_container_service import CreateContainerService
 from tms.master.domain.valueobjects import container
 from tms.master.domain.entities.container import ContainerEntity
@@ -16,7 +17,9 @@ class ContainerModelDto:
                                container.size.value,
                                container.damage.value,
                                container.createuser,
-                               container.updateuser)
+                               container.updateuser,
+                               container.create_at.getStr(),
+                               container.update_at.getStr())
         return model
 
     @staticmethod
@@ -29,7 +32,9 @@ class ContainerModelDto:
                                  container.Size(containerdata.size),
                                  container.Damage(containerdata.damage),
                                  container.MailAddress(containerdata.createuser),
-                                 container.MailAddress(containerdata.updateuser))
+                                 container.MailAddress(containerdata.updateuser),
+                                 common.CDateTime(common.CreateDateTime(containerdata.create_at)),
+                                 common.CDateTime(common.CreateDateTime(containerdata.update_at)))
         return entity
 
     @staticmethod
@@ -42,5 +47,7 @@ class ContainerModelDto:
                                  container.Size(containerdata.size),
                                  container.Damage(containerdata.damage),
                                  container.MailAddress(containerdata.createuser),
-                                 container.MailAddress(containerdata.updateuser))
+                                 container.MailAddress(containerdata.updateuser),
+                                 common.CDateTime(common.CreateDateTime(containerdata.create_at)),
+                                 common.CDateTime(common.CreateDateTime(containerdata.update_at)))
         return entity
