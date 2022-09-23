@@ -1,6 +1,5 @@
-
-from ...infrastructure.inmemory.inmemory_container import InMemoryContainers
-from ...usecases.containers.get.containers_get_usecase import ContainersGetUsecase
+from tms.master.infrastructure.inmemory.inmemory_container import InMemoryContainers
+from tms.master.usecases.containers.get.containers_get_usecase import ContainersGetUsecase
 
 
 def Test_ContainersUsecase_GetAllData():

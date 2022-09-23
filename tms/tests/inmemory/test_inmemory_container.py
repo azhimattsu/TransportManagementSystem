@@ -1,5 +1,5 @@
-from ...domain.valueobjects import container
-from ...infrastructure.inmemory.inmemory_container import InMemoryContainers
+from tms.master.domain.valueobjects import container
+from tms.master.infrastructure.inmemory.inmemory_container import InMemoryContainers
 
 
 def Test_InMemoryContainers_GetAllData():
