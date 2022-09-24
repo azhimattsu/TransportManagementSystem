@@ -8,7 +8,7 @@ from tms.master.domain.entities.container import ContainerEntity
 
 class ContainersRepository(metaclass=ABCMeta):
     @abstractclassmethod
-    def fetch_all_data(self) -> list[ContainerEntity]:
+    def fetch_all_data(self) -> Optional[list[ContainerEntity]]:
         pass
 
     @abstractclassmethod
