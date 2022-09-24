@@ -4,15 +4,17 @@ from fastapi import status
 from fastapi import Request
 from fastapi import Response
 from fastapi.responses import JSONResponse
-
 from starlette.middleware.base import BaseHTTPMiddleware
+
 from .master.domain.helpers.exception import DomainException
 
 from tms.master.usecases.containers.post.containers_post_command import ContainersPostCommand
 from tms.master.usecases.containers.containermodel import ContainerModel
-from tms.master.infrastructure.inmemory.inmemory_container import InMemoryContainers
 from tms.master.usecases.containers.get.containers_get_usecase import ContainersGetUsecase
 from tms.master.usecases.containers.post.containers_post_usecase import ContainersPostUsecase
+
+from tms.master.infrastructure.inmemory.inmemory_container import InMemoryContainers
+from tms.master.infrastructure.mysql.mysql_container import MySqlContainers
 
 
 class CustomHttpException(Exception):
@@ -59,14 +61,15 @@ async def index():
 
 @app.get("/containers/")
 async def getContainersAllData():
-    containrsGetUseCase = ContainersGetUsecase(rep=InMemoryContainers())
+#    containrsGetUseCase = ContainersGetUsecase(rep=InMemoryContainers())
+    containrsGetUseCase = ContainersGetUsecase(rep=MySqlContainers())
     containers = containrsGetUseCase.fetch_all_data()
     return containers
 
 
 @app.get("/containers/{container_code}")
 async def getContainersData(container_code: str):
-    containrsGetUseCase = ContainersGetUsecase(rep=InMemoryContainers())
+    containrsGetUseCase = ContainersGetUsecase(rep=MySqlContainers())
     container = containrsGetUseCase.find_data_bycode(container_code)
     return container
 
@@ -74,7 +77,7 @@ async def getContainersData(container_code: str):
 @app.put("/containers/")
 async def putContainerData(container: ContainerModel):
     try:
-        containrsUseCase = ContainersPostUsecase(rep=InMemoryContainers())
+        containrsUseCase = ContainersPostUsecase(rep=MySqlContainers())
         command = ContainersPostCommand(container)
         containrsUseCase.create_data(command)
     except DomainException as e:
