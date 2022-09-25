@@ -22,5 +22,7 @@ class ContainersGetUsecase:
 
     def find_data_bycode(self, code: str) -> ContainersGetResult:
         value = self.containerRep.find_data_bycode(container.Code(code))
-        containerdata = ContainerModelDto.fromEntity(value)
+        if value is not None:
+            containerdata = ContainerModelDto.fromEntity(value)
+
         return ContainersGetResult(containerdata)

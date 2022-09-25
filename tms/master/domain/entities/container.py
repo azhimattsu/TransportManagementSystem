@@ -12,8 +12,8 @@ class ContainerEntity:
     height: container.Height
     size: container.Size
     damage: container.Damage
-    createuser: container.mailaddress
-    updateuser: container.mailaddress
+    createuser: container.MailAddress
+    updateuser: container.MailAddress
     create_at: common.CDateTime
     update_at: common.CDateTime
 
@@ -25,8 +25,8 @@ class ContainerEntity:
                  height: container.Height,
                  size: container.Size,
                  damage: container.Damage,
-                 createuser: container.mailaddress,
-                 updateuser: container.mailaddress,
+                 createuser: container.MailAddress,
+                 updateuser: container.MailAddress,
                  create_at: common.CDateTime,
                  update_at: common.CDateTime):
         self.id = id

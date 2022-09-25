@@ -16,8 +16,8 @@ class ContainerModelDto:
                                container.height.value,
                                container.size.value,
                                container.damage.value,
-                               container.createuser,
-                               container.updateuser,
+                               container.createuser.value,
+                               container.updateuser.value,
                                container.create_at.getStr(),
                                container.update_at.getStr())
         return model

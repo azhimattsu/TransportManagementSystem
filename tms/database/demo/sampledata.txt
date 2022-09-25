@@ -1,0 +1,4 @@
+INSERT INTO tms.containers
+VALUE
+('1d02a8b7-a6c4-fe2d-635a-a6829bbef6c7','BBBB2222222',1, 3500, 90, 20, 1, 'test001@test.com', 'test001@test.com'),
+('a8d0a2d7-76c5-ad57-dd0b-ee566152441e','AAAA1111111',1, 3500, 86, 40, 1, 'test001@test.com', 'test002@test.com')

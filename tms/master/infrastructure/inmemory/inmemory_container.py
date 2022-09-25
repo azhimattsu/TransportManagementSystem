@@ -36,7 +36,7 @@ class InMemoryContainers(ContainersRepository):
                                      common.CreateDateTime("2017-05-23 12:47:23"))
         self.containers.append(container2)
 
-    def fetch_all_data(self) -> list[ContainerEntity]:
+    def fetch_all_data(self) -> Optional[list[ContainerEntity]]:
         return self.containers
 
     def find_data_bycode(self,
