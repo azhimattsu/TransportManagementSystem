@@ -1,5 +1,5 @@
-from tms.master.domain.valueobjects import container
-from tms.master.domain.entities.container import ContainerEntity
+from tms.domain.valueobjects import container
+from tms.domain.entities.container import ContainerEntity
 
 # オブジェクトの生成
 

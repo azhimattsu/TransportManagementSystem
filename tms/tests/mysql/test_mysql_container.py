@@ -1,4 +1,4 @@
-from tms.master.infrastructure.mysql.mysql_container import MySqlContainers
+from tms.mysqlinfrastructure.mysql_container import MySqlContainers
 
 
 def Test_MySqlContainers_fetch_all_data():

@@ -6,15 +6,17 @@ from fastapi import Response
 from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 
-from .master.domain.helpers.exception import DomainException
+from tms.inmemoryinfrastructure.inmemory_container import InMemoryContainers
+from tms.mysqlinfrastructure.mysql_container import MySqlContainers
 
-from tms.master.usecases.containers.post.containers_post_command import ContainersPostCommand
-from tms.master.usecases.containers.containermodel import ContainerModel
-from tms.master.usecases.containers.get.containers_get_usecase import ContainersGetUsecase
-from tms.master.usecases.containers.post.containers_post_usecase import ContainersPostUsecase
+from .domain.helpers.exception import DomainException
+from tms.applicationport.containers.common.containerdata import ContainerData
 
-from tms.master.infrastructure.inmemory.inmemory_container import InMemoryContainers
-from tms.master.infrastructure.mysql.mysql_container import MySqlContainers
+from tms.application.containers.containers_post_interactor import ContainersPostInteractor
+from tms.applicationport.containers.post.container_post_inputdata import ContainerPostInputData
+
+from tms.application.containers.containers_get_interactor import ContainersGetInteractor
+from tms.application.containers.containers_getall_interactor import ContainersGetAllInteractor
 
 
 class CustomHttpException(Exception):
@@ -50,6 +52,8 @@ class HttpRequestMiddleware(BaseHTTPMiddleware):
 
         return response
 
+rep = MySqlContainers()
+#rep = InMemoryContainers()
 
 app = FastAPI()
 
@@ -61,24 +65,23 @@ async def index():
 
 @app.get("/containers/")
 async def getContainersAllData():
-#    containrsGetUseCase = ContainersGetUsecase(rep=InMemoryContainers())
-    containrsGetUseCase = ContainersGetUsecase(rep=MySqlContainers())
+    containrsGetUseCase = ContainersGetAllInteractor(rep=rep)
     containers = containrsGetUseCase.fetch_all_data()
     return containers
 
 
 @app.get("/containers/{container_code}")
 async def getContainersData(container_code: str):
-    containrsGetUseCase = ContainersGetUsecase(rep=MySqlContainers())
+    containrsGetUseCase = ContainersGetInteractor(rep=rep)
     container = containrsGetUseCase.find_data_bycode(container_code)
     return container
 
 
 @app.put("/containers/")
-async def putContainerData(container: ContainerModel):
+async def putContainerData(container: ContainerData):
     try:
-        containrsUseCase = ContainersPostUsecase(rep=MySqlContainers())
-        command = ContainersPostCommand(container)
+        containrsUseCase = ContainersPostInteractor(rep=rep)
+        command = ContainerPostInputData(container)
         containrsUseCase.create_data(command)
     except DomainException as e:
         raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,
