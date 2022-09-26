@@ -11,6 +11,7 @@ class ContainersGetInteractor:
         self.containerRep = rep
 
     def find_data_bycode(self, code: str) -> ContainerGetOutputData:
+        containerdata = None
         value = self.containerRep.find_data_bycode(container.Code(code))
         if value is not None:
             containerdata = ContainerDataDto.fromEntity(value)

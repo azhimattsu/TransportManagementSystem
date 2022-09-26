@@ -1,4 +1,5 @@
 import copy
+from fastapi import HTTPException
 from fastapi import FastAPI
 from fastapi import status
 from fastapi import Request
@@ -31,8 +32,8 @@ class CustomHttpException(Exception):
         self.status_code = status_code
         self.exception = copy.deepcopy(exception)
         self.detail = {
-            "status": status_code,
-            "message": exception.message,
+#           "status": status_code,
+            "detail": exception.message,
         }
         if self.exception.detail is not None:
             detail1 = {
@@ -42,7 +43,6 @@ class CustomHttpException(Exception):
                     "message": self.exception.detail.message
             }
             self.detail["error"] = detail1
-#        print(self.detail["errors"][0])
 
 
 class HttpRequestMiddleware(BaseHTTPMiddleware):
@@ -77,8 +77,10 @@ async def getContainersAllData():
 @app.get("/containers/{container_code}")
 async def getContainersData(container_code: str):
     containrsGetUseCase = ContainersGetInteractor(rep=rep)
-    container = containrsGetUseCase.find_data_bycode(container_code)
-    return container
+    outputData = containrsGetUseCase.find_data_bycode(container_code)
+    if outputData.container is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Item not found")
+    return outputData
 
 
 @app.post("/containers/")
