@@ -5,7 +5,6 @@ from .size import Size
 from .tareweight import TareWeight
 from .type import Type
 from .id import Id
-from .mailaddress import MailAddress
 
 print(Code)
 print(Height)
@@ -14,4 +13,3 @@ print(Type)
 print(TareWeight)
 print(Damage)
 print(Id)
-print(MailAddress)

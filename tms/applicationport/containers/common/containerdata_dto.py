@@ -31,8 +31,8 @@ class ContainerDataDto:
                                  container.Height(containerdata.height),
                                  container.Size(containerdata.size),
                                  container.Damage(containerdata.damage),
-                                 container.MailAddress(containerdata.createuser),
-                                 container.MailAddress(containerdata.updateuser),
+                                 common.MailAddress(containerdata.createuser),
+                                 common.MailAddress(containerdata.updateuser),
                                  common.CDateTime(common.CreateDateTime(containerdata.create_at)),
                                  common.CDateTime(common.CreateDateTime(containerdata.update_at)))
         return entity
@@ -46,8 +46,8 @@ class ContainerDataDto:
                                  container.Height(containerdata.height),
                                  container.Size(containerdata.size),
                                  container.Damage(containerdata.damage),
-                                 container.MailAddress(containerdata.createuser),
-                                 container.MailAddress(containerdata.updateuser),
+                                 common.MailAddress(containerdata.createuser),
+                                 common.MailAddress(containerdata.updateuser),
                                  common.CDateTime(common.CreateDateTime(containerdata.create_at)),
                                  common.CDateTime(common.CreateDateTime(containerdata.update_at)))
         return entity
