@@ -36,7 +36,7 @@ class InMemoryContainers(ContainersRepository):
                                      common.CreateDateTime("2017-05-23 12:47:23"))
         self.containers.append(container2)
 
-    def fetch_all_data(self) -> Optional[list[ContainerEntity]]:
+    def fetch_all_data(self) -> list[ContainerEntity]:
         return self.containers
 
     def find_data_bycode(self,
@@ -44,6 +44,13 @@ class InMemoryContainers(ContainersRepository):
         container = next((f for f in self.containers if f.code == code), None)
         return container
 
+    def find_data_byid(self, id: container.id) -> Optional[ContainerEntity]:
+        container = next((f for f in self.containers if f.id == id), None)
+        return container
+
     def create_data(self, container: ContainerEntity):
         self.containers.append(container)
         print(self.containers)
+
+    def update_data(self, container: ContainerEntity):
+        pass
