@@ -23,6 +23,17 @@ class Containers(Base):
     create_at = Column(DateTime, server_default=current_timestamp())
     update_at = Column(DateTime, server_default=current_timestamp())
 
+    def importEntity(self, entity: ContainerEntity):
+        self.id = entity.id.value
+        self.code = entity.code.value
+        self.type = int(entity.type)
+        self.tw = entity.tw.value
+        self.height = int(entity.height)
+        self.size = entity.size.value
+        self.damage = entity.damage.value
+        self.createuser = entity.createuser.value
+        self.updateuser = entity.updateuser.value
+
 
 def fromEntity(entity: ContainerEntity) -> Containers:
     target = Containers()

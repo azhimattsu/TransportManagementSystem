@@ -15,6 +15,9 @@ from tms.applicationport.containers.common.containerdata import ContainerData
 from tms.application.containers.containers_post_interactor import ContainersPostInteractor
 from tms.applicationport.containers.post.container_post_inputdata import ContainerPostInputData
 
+from tms.application.containers.containers_put_interactor import ContainersPutInteractor
+from tms.applicationport.containers.put.container_put_inputdata import ContainerPutInputData
+
 from tms.application.containers.containers_get_interactor import ContainersGetInteractor
 from tms.application.containers.containers_getall_interactor import ContainersGetAllInteractor
 
@@ -52,6 +55,7 @@ class HttpRequestMiddleware(BaseHTTPMiddleware):
 
         return response
 
+
 rep = MySqlContainers()
 #rep = InMemoryContainers()
 
@@ -77,8 +81,8 @@ async def getContainersData(container_code: str):
     return container
 
 
-@app.put("/containers/")
-async def putContainerData(container: ContainerData):
+@app.post("/containers/")
+async def postContainerData(container: ContainerData):
     try:
         containrsUseCase = ContainersPostInteractor(rep=rep)
         command = ContainerPostInputData(container)
@@ -87,8 +91,15 @@ async def putContainerData(container: ContainerData):
         raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,
                                   exception=e)
 
-#        raise HTTPException(status_code=status.HTTP_418_IM_A_TEAPOT,
-#                            detail="TEST")
 
+@app.put("/containers/")
+async def putContainerData(container: ContainerData):
+    try:
+        containrsUseCase = ContainersPutInteractor(rep=rep)
+        command = ContainerPutInputData(container)
+        containrsUseCase.update_data(command)
+    except DomainException as e:
+        raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,
+                                  exception=e)
 
 app.add_middleware(HttpRequestMiddleware)
