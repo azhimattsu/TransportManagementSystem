@@ -1,9 +1,9 @@
 import copy
-from tms.applicationport.containers.common.containerdata import ContainerData
+from tms.applicationport.orderinfos.common.orderinfodata import OrderInfoData
 
 
-class ContainerGetAllOutputData:
-    containers: list[ContainerData]
+class OrderInfoGetAllOutputData:
+    orderinfos: list[OrderInfoData]
 
-    def __init__(self, containers: list[ContainerData]):
-        self.containers = copy.deepcopy(containers)
+    def __init__(self, orderinfos: list[OrderInfoData]):
+        self.orderinfos = copy.deepcopy(orderinfos)

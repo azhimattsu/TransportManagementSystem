@@ -1,10 +1,10 @@
 import copy
 from typing import Optional
-from tms.applicationport.containers.common.containerdata import ContainerData
+from tms.applicationport.orderinfos.common.orderinfodata import OrderInfoData
 
 
-class ContainerGetOutputData:
-    container: Optional[ContainerData]
+class OrderInfoGetOutputData:
+    container: Optional[OrderInfoData]
 
-    def __init__(self, container: ContainerData):
-        self.container = copy.deepcopy(container)
+    def __init__(self, orderinfo: OrderInfoData):
+        self.container = copy.deepcopy(orderinfo)
