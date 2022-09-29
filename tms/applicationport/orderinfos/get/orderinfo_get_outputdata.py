@@ -4,7 +4,7 @@ from tms.applicationport.orderinfos.common.orderinfodata import OrderInfoData
 
 
 class OrderInfoGetOutputData:
-    container: Optional[OrderInfoData]
+    orderinfo: Optional[OrderInfoData]
 
     def __init__(self, orderinfo: OrderInfoData):
-        self.container = copy.deepcopy(orderinfo)
+        self.orderinfo = copy.deepcopy(orderinfo)

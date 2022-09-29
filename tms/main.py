@@ -11,16 +11,22 @@ from tms.inmemoryinfrastructure.inmemory_container import InMemoryContainers
 from tms.mysqlinfrastructure.mysql_container import MySqlContainers
 
 from .domain.helpers.exception import DomainException
-from tms.applicationport.containers.common.containerdata import ContainerData
 
+from tms.applicationport.containers.common.containerdata import ContainerData
+from tms.application.containers.containers_get_interactor import ContainersGetInteractor
+from tms.application.containers.containers_getall_interactor import ContainersGetAllInteractor
 from tms.application.containers.containers_post_interactor import ContainersPostInteractor
 from tms.applicationport.containers.post.container_post_inputdata import ContainerPostInputData
-
 from tms.application.containers.containers_put_interactor import ContainersPutInteractor
 from tms.applicationport.containers.put.container_put_inputdata import ContainerPutInputData
 
-from tms.application.containers.containers_get_interactor import ContainersGetInteractor
-from tms.application.containers.containers_getall_interactor import ContainersGetAllInteractor
+from tms.applicationport.orderinfos.common.orderinfodata import OrderInfoData
+from tms.application.orderinfos.orderinfos_get_interactor import OrderInfosGetInteractor
+from tms.application.orderinfos.orderinfos_getall_interactor import OrderInfosGetAllInteractor
+from tms.application.orderinfos.orderinfos_post_interactor import OrderInfosPostInteractor
+from tms.applicationport.orderinfos.post.orderinfo_post_inputdata import OrderInfoPostInputData
+from tms.application.orderinfos.orderinfos_put_interactor import OrderInfosPutInteractor
+from tms.applicationport.orderinfos.put.orderinfo_put_inputdata import OrderInfoPutInputData
 
 
 class CustomHttpException(Exception):
@@ -32,7 +38,6 @@ class CustomHttpException(Exception):
         self.status_code = status_code
         self.exception = copy.deepcopy(exception)
         self.detail = {
-#           "status": status_code,
             "detail": exception.message,
         }
         if self.exception.detail is not None:
@@ -100,6 +105,44 @@ async def putContainerData(container: ContainerData):
         containrsUseCase = ContainersPutInteractor(rep=rep)
         command = ContainerPutInputData(container)
         containrsUseCase.update_data(command)
+    except DomainException as e:
+        raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,
+                                  exception=e)
+
+
+@app.get("/orderinfos/")
+async def getOrderInfosAllData():
+    orderinfosGetUseCase = OrderInfosGetAllInteractor(rep=rep)
+    orderinfos = orderinfosGetUseCase.fetch_all_data()
+    return orderinfos
+
+
+@app.get("/orderinfos/{slicp_code}")
+async def getOrderInfosData(slip_code: str):
+    orderinfosGetUseCase = OrderInfosGetInteractor(rep=rep)
+    outputData = orderinfosGetUseCase.find_data_bycode(slip_code)
+    if outputData.orderinfo is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Item not found")
+    return outputData
+
+
+@app.post("/orderinfos/")
+async def postOrderInfoData(orderinfo: OrderInfoData):
+    try:
+        orderinfosUseCase = OrderInfosPostInteractor(rep=rep)
+        command = OrderInfoPostInputData(orderinfo)
+        orderinfosUseCase.create_data(command)
+    except DomainException as e:
+        raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,
+                                  exception=e)
+
+
+@app.put("/containers/")
+async def putOrderInfoData(orderinfo: OrderInfoData):
+    try:
+        orderinfosUseCase = OrderInfosPutInteractor(rep=rep)
+        command = OrderInfoPutInputData(orderinfo)
+        orderinfosUseCase.update_data(command)
     except DomainException as e:
         raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,
                                   exception=e)

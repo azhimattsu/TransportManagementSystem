@@ -13,7 +13,7 @@ class OrderInfosRepository(metaclass=ABCMeta):
 
     @abstractclassmethod
     def find_data_bycode(self,
-                         code: order.Code) -> Optional[OrderInfoEntity]:
+                         code: order.slicpcode) -> Optional[OrderInfoEntity]:
         pass
 
     @abstractclassmethod
