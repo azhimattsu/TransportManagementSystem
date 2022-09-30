@@ -1,3 +1,4 @@
+from datetime import datetime
 from sqlalchemy import Column
 from sqlalchemy import String
 from sqlalchemy import DateTime
@@ -16,9 +17,9 @@ class OrderInfos(Base):
     customername = Column(String(40), nullable=False)
     salesofficecode = Column(String(10), nullable=False)
     salesofficename = Column(String(40), nullable=False)
-    loadingdate = Column(DateTime, nullable=False)
-    carryindate = Column(DateTime, nullable=False)
-    billingdate = Column(DateTime, nullable=False)
+    loadingdate = Column(DateTime, default=datetime.utcnow)
+    carryindate = Column(DateTime, default=datetime.utcnow)
+    billingdate = Column(DateTime, default=datetime.utcnow)
     loadingareacode = Column(String(10), nullable=False)
     loadingareaname = Column(String(40), nullable=False)
     loadingareaphone = Column(String(11), nullable=False)
@@ -49,7 +50,7 @@ class OrderInfos(Base):
         self.customername = entity.customername.value
         self.salesofficecode = entity.salesofficecode.value
         self.salesofficename = entity.salesofficename.value
-        self.loadingdate = entity.loadingdate.value
+        self.loadingdate = datetime.strptime("2022-090-30 22:00:00", "%Y-%m-%d %H:%M:%S")
         self.carryindate = entity.carryindate.value
         self.billingdate = entity.billingdate.value
         self.loadingareacode = entity.loadingareacode.value
@@ -75,6 +76,8 @@ class OrderInfos(Base):
 
 
 def fromEntity(entity: OrderInfoEntity) -> OrderInfos:
+    print("▼")
+    print(entity.loadingdate.value)
     target = OrderInfos()
     target.id = entity.id.value
     target.slipcode = entity.slipcode.value
@@ -82,7 +85,7 @@ def fromEntity(entity: OrderInfoEntity) -> OrderInfos:
     target.customername = entity.customername.value
     target.salesofficecode = entity.salesofficecode.value
     target.salesofficename = entity.salesofficename.value
-    target.loadingdate = entity.loadingdate.value
+    target.loadingdate = entity.carryindate.getStr()
     target.carryindate = entity.carryindate.value
     target.billingdate = entity.billingdate.value
     target.loadingareacode = entity.loadingareacode.value

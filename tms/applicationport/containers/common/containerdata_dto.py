@@ -33,8 +33,8 @@ class ContainerDataDto:
                                  container.Damage(containerdata.damage),
                                  common.MailAddress(containerdata.createuser),
                                  common.MailAddress(containerdata.updateuser),
-                                 common.CDateTime(common.CreateDateTime(containerdata.create_at)),
-                                 common.CDateTime(common.CreateDateTime(containerdata.update_at)))
+                                 common.CreateDateTime(containerdata.create_at),
+                                 common.CreateDateTime(containerdata.update_at))
         return entity
 
     @staticmethod
@@ -48,6 +48,6 @@ class ContainerDataDto:
                                  container.Damage(containerdata.damage),
                                  common.MailAddress(containerdata.createuser),
                                  common.MailAddress(containerdata.updateuser),
-                                 common.CDateTime(common.CreateDateTime(containerdata.create_at)),
-                                 common.CDateTime(common.CreateDateTime(containerdata.update_at)))
+                                 common.CreateDateTime(containerdata.create_at),
+                                 common.CreateDateTime(containerdata.update_at))
         return entity

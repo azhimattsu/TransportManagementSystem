@@ -25,7 +25,7 @@ class MySqlOrderInfos(OrderInfosRepository):
 
     def find_data_bycode(self,
                          code: order.slicpcode) -> Optional[OrderInfoEntity]:
-        row = s.session.query(c.OrderInfos).filter(c.OrderInfos.code == code.value).first()
+        row = s.session.query(c.OrderInfos).filter(c.OrderInfos.slipcode == code.value).first()
         if row is None:
             return None
 

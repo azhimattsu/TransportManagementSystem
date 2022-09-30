@@ -39,7 +39,6 @@ class OrderInfoData:
     def __init__(self,
                  id: str,
                  slipcode: str,
-                 slipname: str,
                  customercode: str,
                  customername: str,
                  salesofficecode: str,
@@ -71,19 +70,18 @@ class OrderInfoData:
                  update_at: datetime):
         self.id = id
         self.slipcode = slipcode
-        self.slipname = slipname
         self.customercode = customercode
         self.customername = customername
         self.salesofficecode = salesofficecode
         self.salesofficename = salesofficename
         self.loadingdate = loadingdate
         self.carryindate = carryindate
-        self.Billingdate = billingdate
+        self.billingdate = billingdate
         self.loadingareacode = loadingareacode
         self.loadingareaname = loadingareaname
         self.loadingareaphone = loadingareaphone
         self.loadingareaaddress1 = loadingareaaddress1
-        self.carryinareaaddress2 = loadingareaaddress2
+        self.loadingareaaddress2 = loadingareaaddress2
         self.workingareacode = workingareacode
         self.workingareaname = workingareaname
         self.workingareaphone = workingareaphone

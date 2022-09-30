@@ -9,6 +9,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 from tms.inmemoryinfrastructure.inmemory_container import InMemoryContainers
 from tms.mysqlinfrastructure.mysql_container import MySqlContainers
+from tms.mysqlinfrastructure.mysql_order import MySqlOrderInfos
 
 from .domain.helpers.exception import DomainException
 
@@ -61,7 +62,8 @@ class HttpRequestMiddleware(BaseHTTPMiddleware):
         return response
 
 
-rep = MySqlContainers()
+containerRep = MySqlContainers()
+orderInfoRep = MySqlOrderInfos()
 #rep = InMemoryContainers()
 
 app = FastAPI()
@@ -74,14 +76,14 @@ async def index():
 
 @app.get("/containers/")
 async def getContainersAllData():
-    containrsGetUseCase = ContainersGetAllInteractor(rep=rep)
+    containrsGetUseCase = ContainersGetAllInteractor(rep=containerRep)
     containers = containrsGetUseCase.fetch_all_data()
     return containers
 
 
 @app.get("/containers/{container_code}")
 async def getContainersData(container_code: str):
-    containrsGetUseCase = ContainersGetInteractor(rep=rep)
+    containrsGetUseCase = ContainersGetInteractor(rep=containerRep)
     outputData = containrsGetUseCase.find_data_bycode(container_code)
     if outputData.container is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Item not found")
@@ -91,7 +93,7 @@ async def getContainersData(container_code: str):
 @app.post("/containers/")
 async def postContainerData(container: ContainerData):
     try:
-        containrsUseCase = ContainersPostInteractor(rep=rep)
+        containrsUseCase = ContainersPostInteractor(rep=containerRep)
         command = ContainerPostInputData(container)
         containrsUseCase.create_data(command)
     except DomainException as e:
@@ -102,7 +104,7 @@ async def postContainerData(container: ContainerData):
 @app.put("/containers/")
 async def putContainerData(container: ContainerData):
     try:
-        containrsUseCase = ContainersPutInteractor(rep=rep)
+        containrsUseCase = ContainersPutInteractor(rep=containerRep)
         command = ContainerPutInputData(container)
         containrsUseCase.update_data(command)
     except DomainException as e:
@@ -112,14 +114,14 @@ async def putContainerData(container: ContainerData):
 
 @app.get("/orderinfos/")
 async def getOrderInfosAllData():
-    orderinfosGetUseCase = OrderInfosGetAllInteractor(rep=rep)
+    orderinfosGetUseCase = OrderInfosGetAllInteractor(rep=orderInfoRep)
     orderinfos = orderinfosGetUseCase.fetch_all_data()
     return orderinfos
 
 
-@app.get("/orderinfos/{slicp_code}")
+@app.get("/orderinfos/{slip_code}")
 async def getOrderInfosData(slip_code: str):
-    orderinfosGetUseCase = OrderInfosGetInteractor(rep=rep)
+    orderinfosGetUseCase = OrderInfosGetInteractor(rep=orderInfoRep)
     outputData = orderinfosGetUseCase.find_data_bycode(slip_code)
     if outputData.orderinfo is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Item not found")
@@ -129,7 +131,7 @@ async def getOrderInfosData(slip_code: str):
 @app.post("/orderinfos/")
 async def postOrderInfoData(orderinfo: OrderInfoData):
     try:
-        orderinfosUseCase = OrderInfosPostInteractor(rep=rep)
+        orderinfosUseCase = OrderInfosPostInteractor(rep=orderInfoRep)
         command = OrderInfoPostInputData(orderinfo)
         orderinfosUseCase.create_data(command)
     except DomainException as e:
@@ -140,7 +142,7 @@ async def postOrderInfoData(orderinfo: OrderInfoData):
 @app.put("/containers/")
 async def putOrderInfoData(orderinfo: OrderInfoData):
     try:
-        orderinfosUseCase = OrderInfosPutInteractor(rep=rep)
+        orderinfosUseCase = OrderInfosPutInteractor(rep=orderInfoRep)
         command = OrderInfoPutInputData(orderinfo)
         orderinfosUseCase.update_data(command)
     except DomainException as e:

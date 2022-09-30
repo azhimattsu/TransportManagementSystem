@@ -15,9 +15,9 @@ class OrderInfoDataDto:
                               orderinfo.customername.value,
                               orderinfo.salesofficecode.value,
                               orderinfo.salesofficename.value,
-                              orderinfo.loadingdate.value,
-                              orderinfo.carryindate.value,
-                              orderinfo.billingdate.value,
+                              orderinfo.loadingdate.getStr(),
+                              orderinfo.carryindate.getStr(),
+                              orderinfo.billingdate.getStr(),
                               orderinfo.loadingareacode.value,
                               orderinfo.loadingareaname.value,
                               orderinfo.loadingareaphone.value,
@@ -50,9 +50,9 @@ class OrderInfoDataDto:
                                  order.Name(orderinfodata.customername),
                                  order.SalesOfficeCode(orderinfodata.salesofficecode),
                                  order.Name(orderinfodata.salesofficename),
-                                 common.CDateTime(common.CreateDateTime(orderinfodata.loadingdate)),
-                                 common.CDateTime(common.CreateDateTime(orderinfodata.carryindate)),
-                                 common.CDateTime(common.CreateDateTime(orderinfodata.billingdate)),
+                                 common.CreateDateTime(orderinfodata.loadingdate),
+                                 common.CreateDateTime(orderinfodata.carryindate),
+                                 common.CreateDateTime(orderinfodata.billingdate),
                                  order.LoadingAreaCode(orderinfodata.loadingareacode),
                                  order.Name(orderinfodata.loadingareaname),
                                  order.PhoneNumber(orderinfodata.loadingareaphone),
@@ -73,8 +73,8 @@ class OrderInfoDataDto:
                                  order.Name(orderinfodata.destinataionname),
                                  common.MailAddress(orderinfodata.createuser),
                                  common.MailAddress(orderinfodata.updateuser),
-                                 common.CDateTime(common.CreateDateTime(orderinfodata.create_at)),
-                                 common.CDateTime(common.CreateDateTime(orderinfodata.update_at)))
+                                 common.CreateDateTime(orderinfodata.create_at),
+                                 common.CreateDateTime(orderinfodata.update_at))
 
         return entity
 
@@ -86,9 +86,9 @@ class OrderInfoDataDto:
                                  order.Name(orderinfodata.customername),
                                  order.SalesOfficeCode(orderinfodata.salesofficecode),
                                  order.Name(orderinfodata.salesofficename),
-                                 common.CDateTime(common.CreateDateTime(orderinfodata.loadingdate)),
-                                 common.CDateTime(common.CreateDateTime(orderinfodata.carryindate)),
-                                 common.CDateTime(common.CreateDateTime(orderinfodata.billingdate)),
+                                 common.CreateDateTime(orderinfodata.loadingdate),
+                                 common.CreateDateTime(orderinfodata.carryindate),
+                                 common.CreateDateTime(orderinfodata.billingdate),
                                  order.LoadingAreaCode(orderinfodata.loadingareacode),
                                  order.Name(orderinfodata.loadingareaname),
                                  order.PhoneNumber(orderinfodata.loadingareaphone),
@@ -109,7 +109,7 @@ class OrderInfoDataDto:
                                  order.Name(orderinfodata.destinataionname),
                                  common.MailAddress(orderinfodata.createuser),
                                  common.MailAddress(orderinfodata.updateuser),
-                                 common.CDateTime(common.CreateDateTime(orderinfodata.create_at)),
-                                 common.CDateTime(common.CreateDateTime(orderinfodata.update_at)))
+                                 common.CreateDateTime(orderinfodata.create_at),
+                                 common.CreateDateTime(orderinfodata.update_at))
 
         return entity
