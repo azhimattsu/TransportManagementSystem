@@ -50,7 +50,7 @@ class OrderInfos(Base):
         self.customername = entity.customername.value
         self.salesofficecode = entity.salesofficecode.value
         self.salesofficename = entity.salesofficename.value
-        self.loadingdate = datetime.strptime("2022-090-30 22:00:00", "%Y-%m-%d %H:%M:%S")
+        self.loadingdate = entity.loadingdate.value
         self.carryindate = entity.carryindate.value
         self.billingdate = entity.billingdate.value
         self.loadingareacode = entity.loadingareacode.value
@@ -85,7 +85,7 @@ def fromEntity(entity: OrderInfoEntity) -> OrderInfos:
     target.customername = entity.customername.value
     target.salesofficecode = entity.salesofficecode.value
     target.salesofficename = entity.salesofficename.value
-    target.loadingdate = entity.carryindate.getStr()
+    target.loadingdate = entity.loadingdate.value
     target.carryindate = entity.carryindate.value
     target.billingdate = entity.billingdate.value
     target.loadingareacode = entity.loadingareacode.value

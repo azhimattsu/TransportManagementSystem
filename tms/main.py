@@ -139,7 +139,7 @@ async def postOrderInfoData(orderinfo: OrderInfoData):
                                   exception=e)
 
 
-@app.put("/containers/")
+@app.put("/orderinfos/")
 async def putOrderInfoData(orderinfo: OrderInfoData):
     try:
         orderinfosUseCase = OrderInfosPutInteractor(rep=orderInfoRep)
