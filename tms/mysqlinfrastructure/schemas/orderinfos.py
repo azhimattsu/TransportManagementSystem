@@ -76,8 +76,6 @@ class OrderInfos(Base):
 
 
 def fromEntity(entity: OrderInfoEntity) -> OrderInfos:
-    print("▼")
-    print(entity.loadingdate.value)
     target = OrderInfos()
     target.id = entity.id.value
     target.slipcode = entity.slipcode.value
