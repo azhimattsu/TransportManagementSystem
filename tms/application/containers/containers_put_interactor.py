@@ -10,5 +10,5 @@ class ContainersPutInteractor:
         self.containerRep = rep
 
     def update_data(self, command: ContainerPutInputData):
-        entity = ContainerDataDto.toEntity(command.container)
+        entity = ContainerDataDto.to_entity(command.container)
         self.containerRep.update_data(entity)

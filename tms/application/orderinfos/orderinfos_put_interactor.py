@@ -10,5 +10,5 @@ class OrderInfosPutInteractor:
         self.orderinfosRep = rep
 
     def update_data(self, command: OrderInfoPutInputData):
-        entity = OrderInfoDataDto.toEntity(command.orderinfo)
+        entity = OrderInfoDataDto.to_entity(command.orderinfo)
         self.orderinfosRep.update_data(entity)

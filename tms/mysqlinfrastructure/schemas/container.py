@@ -23,7 +23,7 @@ class Containers(Base):
     create_at = Column(DateTime, server_default=current_timestamp())
     update_at = Column(DateTime, server_default=current_timestamp())
 
-    def importEntity(self, entity: ContainerEntity):
+    def import_entity(self, entity: ContainerEntity):
         self.id = entity.id.value
         self.code = entity.code.value
         self.type = int(entity.type)
@@ -35,7 +35,7 @@ class Containers(Base):
         self.updateuser = entity.updateuser.value
 
 
-def fromEntity(entity: ContainerEntity) -> Containers:
+def from_entity(entity: ContainerEntity) -> Containers:
     target = Containers()
     target.id = entity.id.value
     target.code = entity.code.value
@@ -49,7 +49,7 @@ def fromEntity(entity: ContainerEntity) -> Containers:
     return target
 
 
-def toEntity(row: Containers) -> ContainerEntity:
+def to_entity(row: Containers) -> ContainerEntity:
     target = ContainerEntity(container.Id(row.id),
                              container.Code(row.code),
                              container.Type(row.type),

@@ -14,6 +14,6 @@ class OrderInfosGetAllInteractor:
         values = self.orderinfosRep.fetch_all_data()
 
         for value in values:
-            orderinfolist.append(OrderInfoDataDto.fromEntity(value))
+            orderinfolist.append(OrderInfoDataDto.from_entity(value))
 
         return OrderInfoGetAllOutputData(orderinfolist)

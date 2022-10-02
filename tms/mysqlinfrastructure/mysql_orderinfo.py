@@ -19,7 +19,7 @@ class MySqlOrderInfos(OrderInfosRepository):
 
         rows = s.session.query(c.OrderInfos).all()
         for row in rows:
-            results.append(c.toEntity(row))
+            results.append(c.to_entity(row))
 
         return results
 
@@ -29,7 +29,7 @@ class MySqlOrderInfos(OrderInfosRepository):
         if row is None:
             return None
 
-        return c.toEntity(row)
+        return c.to_entity(row)
 
     def find_data_byid(self, id: order.id) -> Optional[OrderInfoEntity]:
         row = s.session.query(c.OrderInfos).filter(c.OrderInfos.id == id.value).first()
@@ -38,7 +38,7 @@ class MySqlOrderInfos(OrderInfosRepository):
 
     def create_data(self, orderinfo: OrderInfoEntity):
         s.session.begin()
-        row = c.fromEntity(orderinfo)
+        row = c.from_entity(orderinfo)
         s.session.add(row)
         s.session.commit()
 
@@ -48,5 +48,5 @@ class MySqlOrderInfos(OrderInfosRepository):
         if found is None:
             return
 
-        found.importEntity(orderinfo)
+        found.import_entity(orderinfo)
         s.session.commit()

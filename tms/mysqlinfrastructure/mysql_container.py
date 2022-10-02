@@ -19,7 +19,7 @@ class MySqlContainers(ContainersRepository):
 
         rows = s.session.query(c.Containers).all()
         for row in rows:
-            results.append(c.toEntity(row))
+            results.append(c.to_entity(row))
 
         return results
 
@@ -29,7 +29,7 @@ class MySqlContainers(ContainersRepository):
         if row is None:
             return None
 
-        return c.toEntity(row)
+        return c.to_entity(row)
 
     def find_data_byid(self, id: container.id) -> Optional[ContainerEntity]:
         row = s.session.query(c.Containers).filter(c.Containers.id == id.value).first()
@@ -38,7 +38,7 @@ class MySqlContainers(ContainersRepository):
 
     def create_data(self, container: ContainerEntity):
         s.session.begin()
-        row = c.fromEntity(container)
+        row = c.from_entity(container)
         s.session.add(row)
         s.session.commit()
 
@@ -48,5 +48,5 @@ class MySqlContainers(ContainersRepository):
         if found is None:
             return
 
-        found.importEntity(container)
+        found.import_entity(container)
         s.session.commit()

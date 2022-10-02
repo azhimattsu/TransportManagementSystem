@@ -6,5 +6,5 @@ import uuid
 class CreateContainerService:
 
     @staticmethod
-    def GetContainerId() -> container.Id:
+    def get_containerid() -> container.Id:
         return container.Id(str(uuid.uuid4()))

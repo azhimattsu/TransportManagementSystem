@@ -10,5 +10,5 @@ class DispatchInfosPutInteractor:
         self.dispatchinfosRep = rep
 
     def update_data(self, command: DispatchInfoPutInputData):
-        entity = DispatchInfoDataDto.toEntity(command.dispatchinfo)
+        entity = DispatchInfoDataDto.to_entity(command.dispatchinfo)
         self.dispatchinfosRep.update_data(entity)

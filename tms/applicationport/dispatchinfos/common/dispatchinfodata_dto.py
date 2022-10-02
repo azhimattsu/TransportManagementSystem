@@ -9,7 +9,7 @@ from .dispatchinfodata import DispatchInfoData
 class DispatchInfoDataDto:
 
     @staticmethod
-    def fromEntity(dispatchinfo: DispatchInfoEntity) -> DispatchInfoData:
+    def from_entity(dispatchinfo: DispatchInfoEntity) -> DispatchInfoData:
         model = DispatchInfoData(dispatchinfo.containerId.value,
                                  dispatchinfo.day.getStr(),
                                  dispatchinfo.index,
@@ -30,7 +30,7 @@ class DispatchInfoDataDto:
         return model
 
     @staticmethod
-    def toEntity(dispatchinfodata: DispatchInfoData) -> DispatchInfoEntity:
+    def to_entity(dispatchinfodata: DispatchInfoData) -> DispatchInfoEntity:
         entity = DispatchInfoEntity(container.Id(dispatchinfodata.containerId),
                                     common.CreateDateTime(dispatchinfodata.day),
                                     dispatchinfodata.index,

@@ -14,6 +14,6 @@ class ContainersGetAllInteractor:
         values = self.containerRep.fetch_all_data()
 
         for value in values:
-            containerlist.append(ContainerDataDto.fromEntity(value))
+            containerlist.append(ContainerDataDto.from_entity(value))
 
         return ContainerGetAllOutputData(containerlist)

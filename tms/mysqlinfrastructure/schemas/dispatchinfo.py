@@ -30,7 +30,7 @@ class DispatchInfos(Base):
     create_at = Column(DateTime, server_default=current_timestamp())
     update_at = Column(DateTime, server_default=current_timestamp())
 
-    def importEntity(self, entity: DispatchInfoEntity):
+    def import_entity(self, entity: DispatchInfoEntity):
         self.containerId = entity.containerId.value
         self.day = entity.day.value
         self.index = entity.index
@@ -48,7 +48,7 @@ class DispatchInfos(Base):
         self.updateuser = entity.updateuser.value
 
 
-def fromEntity(entity: DispatchInfoEntity) -> DispatchInfos:
+def from_entity(entity: DispatchInfoEntity) -> DispatchInfos:
     print(entity)
     target = DispatchInfos()
     target.containerId = entity.containerId.value
@@ -69,7 +69,7 @@ def fromEntity(entity: DispatchInfoEntity) -> DispatchInfos:
     return target
 
 
-def toEntity(row: DispatchInfos) -> DispatchInfoEntity:
+def to_entity(row: DispatchInfos) -> DispatchInfoEntity:
     target = DispatchInfoEntity(container.Id(row.containerId),
                                 common.CDateTime(row.day),
                                 row.index,

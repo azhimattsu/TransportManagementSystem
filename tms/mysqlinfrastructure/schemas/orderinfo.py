@@ -43,7 +43,7 @@ class OrderInfos(Base):
     create_at = Column(DateTime, server_default=current_timestamp())
     update_at = Column(DateTime, server_default=current_timestamp())
 
-    def importEntity(self, entity: OrderInfoEntity):
+    def import_entity(self, entity: OrderInfoEntity):
         self.id = entity.id.value
         self.slipcode = entity.slipcode.value
         self.customercode = entity.customercode.value
@@ -75,7 +75,7 @@ class OrderInfos(Base):
         self.updateuser = entity.updateuser.value
 
 
-def fromEntity(entity: OrderInfoEntity) -> OrderInfos:
+def from_entity(entity: OrderInfoEntity) -> OrderInfos:
     target = OrderInfos()
     target.id = entity.id.value
     target.slipcode = entity.slipcode.value
@@ -110,7 +110,7 @@ def fromEntity(entity: OrderInfoEntity) -> OrderInfos:
     return target
 
 
-def toEntity(row: OrderInfos) -> OrderInfoEntity:
+def to_entity(row: OrderInfos) -> OrderInfoEntity:
     target = OrderInfoEntity(order.Id(row.id),
                              order.SlipCode(row.slipcode),
                              order.CustomerCode(row.customercode),

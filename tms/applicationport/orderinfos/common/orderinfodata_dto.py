@@ -8,7 +8,7 @@ from .orderinfodata import OrderInfoData
 class OrderInfoDataDto:
 
     @staticmethod
-    def fromEntity(orderinfo: OrderInfoEntity) -> OrderInfoData:
+    def from_entity(orderinfo: OrderInfoEntity) -> OrderInfoData:
         model = OrderInfoData(orderinfo.id.value,
                               orderinfo.slipcode.value,
                               orderinfo.customercode.value,
@@ -43,7 +43,7 @@ class OrderInfoDataDto:
         return model
 
     @staticmethod
-    def toEntity(orderinfodata: OrderInfoData) -> OrderInfoEntity:
+    def to_entity(orderinfodata: OrderInfoData) -> OrderInfoEntity:
         entity = OrderInfoEntity(order.Id(orderinfodata.id),
                                  order.SlipCode(orderinfodata.slipcode),
                                  order.CustomerCode(orderinfodata.customercode),
@@ -80,7 +80,7 @@ class OrderInfoDataDto:
 
     @staticmethod
     def CreateEntity(orderinfodata: OrderInfoData) -> OrderInfoEntity:
-        entity = OrderInfoEntity(CreateOrderInfoService.GetOrderInfoId(),
+        entity = OrderInfoEntity(CreateOrderInfoService.get_orderInfoid(),
                                  order.SlipCode(orderinfodata.slipcode),
                                  order.CustomerCode(orderinfodata.customercode),
                                  order.Name(orderinfodata.customername),

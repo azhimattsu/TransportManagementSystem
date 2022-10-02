@@ -14,6 +14,6 @@ class DispatchInfosGetInteractor:
         dispatchinfolist = list()
         values = self.dispatchinfosRep.find_data_byid(id, common.CreateDateTime(day))
         for value in values:
-            dispatchinfolist.append(DispatchInfoDataDto.fromEntity(value))
+            dispatchinfolist.append(DispatchInfoDataDto.from_entity(value))
 
         return DispatchInfoGetOutputData(dispatchinfolist)

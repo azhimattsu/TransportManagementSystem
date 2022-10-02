@@ -14,6 +14,6 @@ class DispatchInfosGetAllInteractor:
         values = self.dispatchinfosRep.fetch_all_data()
 
         for value in values:
-            dispatchinfolist.append(DispatchInfoDataDto.fromEntity(value))
+            dispatchinfolist.append(DispatchInfoDataDto.from_entity(value))
 
         return DispatchInfoGetAllOutputData(dispatchinfolist)

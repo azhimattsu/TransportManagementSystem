@@ -14,6 +14,6 @@ class OrderInfosGetInteractor:
         orderinfodata = None
         value = self.orderinfosRep.find_data_bycode(order.SlipCode(code))
         if value is not None:
-            orderinfodata = OrderInfoDataDto.fromEntity(value)
+            orderinfodata = OrderInfoDataDto.from_entity(value)
 
         return OrderInfoGetOutputData(orderinfodata)

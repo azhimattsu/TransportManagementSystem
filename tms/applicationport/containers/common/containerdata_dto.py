@@ -8,7 +8,7 @@ from .containerdata import ContainerData
 class ContainerDataDto:
 
     @staticmethod
-    def fromEntity(container: ContainerEntity) -> ContainerData:
+    def from_entity(container: ContainerEntity) -> ContainerData:
         model = ContainerData(container.id.value,
                               container.code.value,
                               container.type,
@@ -23,7 +23,7 @@ class ContainerDataDto:
         return model
 
     @staticmethod
-    def toEntity(containerdata: ContainerData) -> ContainerEntity:
+    def to_entity(containerdata: ContainerData) -> ContainerEntity:
         entity = ContainerEntity(container.Id(containerdata.id),
                                  container.Code(containerdata.code),
                                  container.Type(containerdata.type),
@@ -39,7 +39,7 @@ class ContainerDataDto:
 
     @staticmethod
     def CreateEntity(containerdata: ContainerData) -> ContainerEntity:
-        entity = ContainerEntity(CreateContainerService.GetContainerId(),
+        entity = ContainerEntity(CreateContainerService.get_containerid(),
                                  container.Code(containerdata.code),
                                  container.Type(containerdata.type),
                                  container.TareWeight(containerdata.tw),

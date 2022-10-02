@@ -6,5 +6,5 @@ import uuid
 class CreateOrderInfoService:
 
     @staticmethod
-    def GetOrderInfoId() -> order.Id:
+    def get_orderInfoid() -> order.Id:
         return order.Id(str(uuid.uuid4()))
