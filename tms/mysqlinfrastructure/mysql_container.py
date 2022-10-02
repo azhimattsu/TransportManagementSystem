@@ -2,9 +2,9 @@ from typing import Optional
 
 from tms.domain.valueobjects import container
 from tms.domain.entities.container import ContainerEntity
-from tms.domain.repositories.containers_repository import ContainersRepository
+from tms.domain.repositories.container_repository import ContainersRepository
 
-import tms.mysqlinfrastructure.schemas.containers as c
+import tms.mysqlinfrastructure.schemas.container as c
 import tms.mysqlinfrastructure.mysql_setting as s
 
 

@@ -2,9 +2,9 @@ from typing import Optional
 
 from tms.domain.valueobjects import order
 from tms.domain.entities.orderinfo import OrderInfoEntity
-from tms.domain.repositories.orderinfos_repository import OrderInfosRepository
+from tms.domain.repositories.orderinfo_repository import OrderInfosRepository
 
-import tms.mysqlinfrastructure.schemas.orderinfos as c
+import tms.mysqlinfrastructure.schemas.orderinfo as c
 import tms.mysqlinfrastructure.mysql_setting as s
 
 

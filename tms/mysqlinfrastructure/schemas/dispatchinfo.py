@@ -11,7 +11,7 @@ from tms.domain.valueobjects import container
 
 
 class DispatchInfos(Base):
-    __tablename__ = "dispatchinfos"
+    __tablename__ = "dispatchinfo"
     containerId = Column(String(64), primary_key=True, nullable=False)
     day = Column(DateTime, primary_key=True, default=datetime.utcnow)
     index = Column(Integer, primary_key=True, nullable=False)

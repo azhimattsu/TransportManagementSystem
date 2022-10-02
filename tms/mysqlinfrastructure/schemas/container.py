@@ -10,7 +10,7 @@ from tms.domain.valueobjects import container
 
 
 class Containers(Base):
-    __tablename__ = "containers"
+    __tablename__ = "container"
     id = Column(String(64), primary_key=True, nullable=False)
     code = Column(String(11), nullable=False)
     type = Column(Integer, nullable=False)

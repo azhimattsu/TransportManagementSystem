@@ -1,10 +1,9 @@
-from typing import Optional
 from sqlalchemy import and_
 from tms.domain.valueobjects import common, container
 from tms.domain.entities.dispatchinfo import DispatchInfoEntity
-from tms.domain.repositories.dispatchinfos_repository import DispatchInfosRepository
+from tms.domain.repositories.dispatchinfo_repository import DispatchInfosRepository
 
-import tms.mysqlinfrastructure.schemas.dispatchinfos as c
+import tms.mysqlinfrastructure.schemas.dispatchinfo as c
 import tms.mysqlinfrastructure.mysql_setting as s
 
 
@@ -43,8 +42,8 @@ class MySqlDispatchInfos(DispatchInfosRepository):
     def update_data(self, dispatchinfo: DispatchInfoEntity):
         s.session.begin()
         found = s.session.query(c.DispatchInfos).filter(and_(c.DispatchInfos.containerId == dispatchinfo.containerId.value,
-                                                          c.DispatchInfos.day == dispatchinfo.day.value,
-                                                          c.DispatchInfos.index == dispatchinfo.index)).first()
+                                                             c.DispatchInfos.day == dispatchinfo.day.value,
+                                                             c.DispatchInfos.index == dispatchinfo.index)).first()
         if found is None:
             return
 

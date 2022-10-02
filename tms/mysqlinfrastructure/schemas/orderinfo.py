@@ -10,7 +10,7 @@ from tms.domain.valueobjects import common, order
 
 
 class OrderInfos(Base):
-    __tablename__ = "orderinfos"
+    __tablename__ = "orderinfo"
     id = Column(String(64), primary_key=True, nullable=False)
     slipcode = Column(String(10), nullable=False)
     customercode = Column(String(10), nullable=False)

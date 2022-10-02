@@ -1,6 +1,6 @@
 from tms.applicationport.dispatchinfos.common.dispatchinfodata_dto import DispatchInfoDataDto
 from tms.applicationport.dispatchinfos.getall.dispatchinfo_getall_outputdata import DispatchInfoGetAllOutputData
-from tms.domain.repositories.dispatchinfos_repository import DispatchInfosRepository
+from tms.domain.repositories.dispatchinfo_repository import DispatchInfosRepository
 
 
 class DispatchInfosGetAllInteractor:

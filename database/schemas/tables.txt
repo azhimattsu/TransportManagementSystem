@@ -1,4 +1,4 @@
-CREATE TABLE `containers` (
+CREATE TABLE `container` (
   `id` varchar(64) NOT NULL,
   `code` varchar(11) NOT NULL DEFAULT '',
   `type` int NOT NULL DEFAULT '0',
@@ -13,7 +13,7 @@ CREATE TABLE `containers` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `orderinfos` (
+CREATE TABLE `orderinfo` (
   `id` varchar(64) NOT NULL,
   `slipcode` varchar(10) NOT NULL DEFAULT '',
   `customercode` varchar(10) NOT NULL DEFAULT '',
@@ -49,7 +49,7 @@ CREATE TABLE `orderinfos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-CREATE TABLE `dispatchinfos` (
+CREATE TABLE `dispatchinfo` (
   `containerId` varchar(64) NOT NULL DEFAULT '',
   `day` datetime NOT NULL DEFAULT '1900-01-01 00:00:00',
   `index` int NOT NULL DEFAULT '0',

@@ -1,7 +1,7 @@
 from tms.domain.valueobjects import container
 from tms.applicationport.containers.common.containerdata_dto import ContainerDataDto
 from tms.applicationport.containers.get.container_get_outputdata import ContainerGetOutputData
-from tms.domain.repositories.containers_repository import ContainersRepository
+from tms.domain.repositories.container_repository import ContainersRepository
 
 
 class ContainersGetInteractor:

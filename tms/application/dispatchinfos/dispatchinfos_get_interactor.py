@@ -1,7 +1,7 @@
 from tms.domain.valueobjects import common
 from tms.applicationport.dispatchinfos.common.dispatchinfodata_dto import DispatchInfoDataDto
 from tms.applicationport.dispatchinfos.get.dispatchinfo_get_outputdata import DispatchInfoGetOutputData
-from tms.domain.repositories.dispatchinfos_repository import DispatchInfosRepository
+from tms.domain.repositories.dispatchinfo_repository import DispatchInfosRepository
 
 
 class DispatchInfosGetInteractor:

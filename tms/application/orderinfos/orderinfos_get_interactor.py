@@ -1,7 +1,7 @@
 from tms.domain.valueobjects import order
 from tms.applicationport.orderinfos.common.orderinfodata_dto import OrderInfoDataDto
 from tms.applicationport.orderinfos.get.orderinfo_get_outputdata import OrderInfoGetOutputData
-from tms.domain.repositories.orderinfos_repository import OrderInfosRepository
+from tms.domain.repositories.orderinfo_repository import OrderInfosRepository
 
 
 class OrderInfosGetInteractor:
