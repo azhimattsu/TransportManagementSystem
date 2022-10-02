@@ -1,5 +1,5 @@
-from tms.domain.valueobjects import common
-from tms.domain.services.create_orderinfo_service import CreateOrderInfoService
+from tms.domain.valueobjects import common, order
+from tms.domain.services.create_container_service import CreateContainerService
 from tms.domain.valueobjects import container
 from tms.domain.valueobjects import dispatch
 from tms.domain.entities.dispatchinfo import DispatchInfoEntity
@@ -13,6 +13,7 @@ class DispatchInfoDataDto:
         model = DispatchInfoData(dispatchinfo.containerId.value,
                                  dispatchinfo.day.getStr(),
                                  dispatchinfo.index,
+                                 dispatchinfo.orderinfoId.value,
                                  dispatchinfo.workingtype,
                                  dispatchinfo.contractortype,
                                  dispatchinfo.drivercode.value,
@@ -33,6 +34,7 @@ class DispatchInfoDataDto:
         entity = DispatchInfoEntity(container.Id(dispatchinfodata.containerId),
                                     common.CreateDateTime(dispatchinfodata.day),
                                     dispatchinfodata.index,
+                                    order.Id(dispatchinfodata.orderinfoId),
                                     dispatchinfodata.workingtype,
                                     dispatchinfodata.contractortype,
                                     dispatch.DriverCode(dispatchinfodata.drivercode),
@@ -51,9 +53,10 @@ class DispatchInfoDataDto:
 
     @staticmethod
     def CreateEntity(dispatchinfodata: DispatchInfoData) -> DispatchInfoEntity:
-        entity = DispatchInfoEntity(CreateOrderInfoService.GetOrderInfoId(),
+        entity = DispatchInfoEntity(container.Id(dispatchinfodata.containerId),
                                     common.CreateDateTime(dispatchinfodata.day),
                                     dispatchinfodata.index,
+                                    order.Id(dispatchinfodata.orderinfoId),
                                     dispatchinfodata.workingtype,
                                     dispatchinfodata.contractortype,
                                     dispatch.DriverCode(dispatchinfodata.drivercode),
@@ -67,5 +70,4 @@ class DispatchInfoDataDto:
                                     common.MailAddress(dispatchinfodata.updateuser),
                                     common.CreateDateTime(dispatchinfodata.create_at),
                                     common.CreateDateTime(dispatchinfodata.update_at))
-
         return entity

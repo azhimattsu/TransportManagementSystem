@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from tms.domain.valueobjects import container
 from tms.domain.valueobjects import dispatch
 from tms.domain.valueobjects import common
+from tms.domain.valueobjects import order
 
 
 @dataclass(init=False, eq=True)
@@ -9,6 +10,7 @@ class DispatchInfoEntity:
     containerId: container.Id
     day: common.CDateTime
     index: int
+    orderinfoId: order.Id
     workingtype: dispatch.WorkingType
     contractortype: dispatch.ContractorType
     drivercode: dispatch.DriverCode
@@ -27,11 +29,12 @@ class DispatchInfoEntity:
                  containerId: container.Id,
                  day: common.CDateTime,
                  index: int,
+                 orderinfoId: order.Id,
                  workingtype: dispatch.WorkingType,
                  contractortype: dispatch.ContractorType,
                  drivercode: dispatch.DriverCode,
                  vehiclenumber: dispatch.VehicleNumber,
-                 departurepoint: dispatch.pointcode,
+                 departurepoint: dispatch.PointCode,
                  arrivalpoint: dispatch.PointCode,
                  sales: int,
                  cost: int,
@@ -44,6 +47,7 @@ class DispatchInfoEntity:
         self.containerId = containerId
         self.day = day
         self.index = index
+        self.orderinfoId = orderinfoId
         self.workingtype = workingtype
         self.contractortype = contractortype
         self.drivercode = drivercode

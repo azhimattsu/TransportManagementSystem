@@ -47,3 +47,25 @@ CREATE TABLE `orderinfos` (
   `update_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `dispatchinfos` (
+  `containerId` varchar(64) NOT NULL DEFAULT '',
+  `day` datetime NOT NULL DEFAULT '1900-01-01 00:00:00',
+  `index` int NOT NULL DEFAULT '0',
+  `orderinfoId` varchar(64) NOT NULL DEFAULT '',
+  `workingtype` int NOT NULL DEFAULT '0',
+  `contractortype` int NOT NULL DEFAULT '0',
+  `drivercode` varchar(10) NOT NULL DEFAULT '',
+  `vehiclenumber` varchar(10) NOT NULL DEFAULT '',
+  `departurepoint` varchar(10) NOT NULL DEFAULT '',
+  `arrivalpoint` varchar(10) NOT NULL DEFAULT '',
+  `sales` int NOT NULL DEFAULT '0',
+  `cost` int NOT NULL DEFAULT '0',
+  `remark` varchar(60) NOT NULL DEFAULT '',
+  `createuser` varchar(60) NOT NULL DEFAULT '',
+  `updateuser` varchar(60) NOT NULL DEFAULT '',
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`containerId`,`day`,`index`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

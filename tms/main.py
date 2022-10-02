@@ -9,7 +9,8 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 from tms.inmemoryinfrastructure.inmemory_container import InMemoryContainers
 from tms.mysqlinfrastructure.mysql_container import MySqlContainers
-from tms.mysqlinfrastructure.mysql_order import MySqlOrderInfos
+from tms.mysqlinfrastructure.mysql_orderinfo import MySqlOrderInfos
+from tms.mysqlinfrastructure.mysql_dispatchinfo import MySqlDispatchInfos
 
 from .domain.helpers.exception import DomainException
 
@@ -28,6 +29,14 @@ from tms.application.orderinfos.orderinfos_post_interactor import OrderInfosPost
 from tms.applicationport.orderinfos.post.orderinfo_post_inputdata import OrderInfoPostInputData
 from tms.application.orderinfos.orderinfos_put_interactor import OrderInfosPutInteractor
 from tms.applicationport.orderinfos.put.orderinfo_put_inputdata import OrderInfoPutInputData
+
+from tms.applicationport.dispatchinfos.common.dispatchinfodata import DispatchInfoData
+from tms.application.dispatchinfos.dispatchinfos_get_interactor import DispatchInfosGetInteractor
+from tms.application.dispatchinfos.dispatchinfos_getall_interactor import DispatchInfosGetAllInteractor
+from tms.application.dispatchinfos.dispatchinfos_post_interactor import DispatchInfosPostInteractor
+from tms.applicationport.dispatchinfos.post.dispatchinfo_post_inputdata import DispatchInfoPostInputData
+from tms.application.dispatchinfos.dispatchinfos_put_interactor import DispatchInfosPutInteractor
+from tms.applicationport.dispatchinfos.put.dispatchinfo_put_inputdata import DispatchInfoPutInputData
 
 
 class CustomHttpException(Exception):
@@ -64,7 +73,8 @@ class HttpRequestMiddleware(BaseHTTPMiddleware):
 
 containerRep = MySqlContainers()
 orderInfoRep = MySqlOrderInfos()
-#rep = InMemoryContainers()
+dispatchInfoRep = MySqlDispatchInfos()
+# rep = InMemoryContainers()
 
 app = FastAPI()
 
@@ -149,4 +159,41 @@ async def putOrderInfoData(orderinfo: OrderInfoData):
         raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,
                                   exception=e)
 
+
+@app.get("/dispatchinfos/")
+async def getDispatchInfosAllData():
+    dispatchinfosGetUseCase = DispatchInfosGetAllInteractor(rep=dispatchInfoRep)
+    dispatchinfos = dispatchinfosGetUseCase.fetch_all_data()
+    return dispatchinfos
+
+
+@app.get("/dispatchinfos/{slip_code}")
+async def getDispatchInfosData(slip_code: str):
+    dispatchinfosGetUseCase = DispatchInfosGetInteractor(rep=dispatchInfoRep)
+    outputData = dispatchinfosGetUseCase.find_data_byid(slip_code)
+    if outputData.orderinfo is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Item not found")
+    return outputData
+
+
+@app.post("/dispatchinfos/")
+async def postDispatchInfoData(dispatchinfo: DispatchInfoData):
+    try:
+        dispatchinfosUseCase = DispatchInfosPostInteractor(rep=dispatchInfoRep)
+        command = DispatchInfoPostInputData(dispatchinfo)
+        dispatchinfosUseCase.create_data(command)
+    except DomainException as e:
+        raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,
+                                  exception=e)
+
+
+@app.put("/dispatchinfos/")
+async def putDispatchInfoData(dispatchinfo: DispatchInfoData):
+    try:
+        dispatchinfosUseCase = DispatchInfosPutInteractor(rep=dispatchInfoRep)
+        command = DispatchInfoPutInputData(dispatchinfo)
+        dispatchinfosUseCase.update_data(command)
+    except DomainException as e:
+        raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,
+                                  exception=e)
 app.add_middleware(HttpRequestMiddleware)

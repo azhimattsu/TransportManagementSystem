@@ -5,8 +5,9 @@ from datetime import datetime
 @dataclass(init=False, eq=True)
 class DispatchInfoData:
     containerId: str
-    day: datetime
+    day: str
     index: int
+    orderinfoId: str
     workingtype: int
     contractortype: int
     drivercode: str
@@ -25,6 +26,7 @@ class DispatchInfoData:
                  containerId: str,
                  day: datetime,
                  index: int,
+                 orderinfoId: str,
                  workingtype: int,
                  contractortype: int,
                  drivercode: str,
@@ -41,6 +43,7 @@ class DispatchInfoData:
         self.containerId = containerId
         self.day = day
         self.index = index
+        self.orderinfoId = orderinfoId
         self.workingtype = workingtype
         self.contractortype = contractortype
         self.drivercode = drivercode

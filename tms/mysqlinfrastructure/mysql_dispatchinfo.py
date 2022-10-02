@@ -27,7 +27,7 @@ class MySqlDispatchInfos(DispatchInfosRepository):
         results: list[DispatchInfoEntity] = []
         results.clear()
 
-        rows = s.session.query(c.Containers).filter(and_(c.DispatchInfos.containerId == id.value, c.DispatchInfos.day == day)).all()
+        rows = s.session.query(c.DispatchInfos).filter(and_(c.DispatchInfos.containerId == id.value, c.DispatchInfos.day == day)).all()
 
         for row in rows:
             results.append(c.toEntity(row))
@@ -36,17 +36,17 @@ class MySqlDispatchInfos(DispatchInfosRepository):
 
     def create_data(self, dispatchinfo: DispatchInfoEntity):
         s.session.begin()
-        row = c.fromEntity(container)
+        row = c.fromEntity(dispatchinfo)
         s.session.add(row)
         s.session.commit()
 
     def update_data(self, dispatchinfo: DispatchInfoEntity):
         s.session.begin()
-        found = s.session.query(c.Containers).filter(and_(c.DispatchInfos.containerId == dispatchinfo.containerId.value,
-                                                          c.DispatchInfos.day == dispatchinfo.containerId.day,
+        found = s.session.query(c.DispatchInfos).filter(and_(c.DispatchInfos.containerId == dispatchinfo.containerId.value,
+                                                          c.DispatchInfos.day == dispatchinfo.day.value,
                                                           c.DispatchInfos.index == dispatchinfo.index)).first()
         if found is None:
             return
 
-        found.importEntity(container)
+        found.importEntity(dispatchinfo)
         s.session.commit()

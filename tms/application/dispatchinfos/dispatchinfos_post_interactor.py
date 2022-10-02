@@ -10,5 +10,6 @@ class DispatchInfosPostInteractor:
         self.dispatchinfosRep = rep
 
     def create_data(self, command: DispatchInfoPostInputData):
+        print(command.dispatchinfo)
         entity = DispatchInfoDataDto.CreateEntity(command.dispatchinfo)
         self.dispatchinfosRep.create_data(entity)
