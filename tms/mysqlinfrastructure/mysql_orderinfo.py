@@ -25,14 +25,14 @@ class MySqlOrderInfos(OrderInfosRepository):
 
     def find_data_bycode(self,
                          code: order.slicpcode) -> Optional[OrderInfoEntity]:
-        row = s.session.query(c.OrderInfos).filter(c.OrderInfos.slipcode == code.value).first()
+        row = s.session.query(c.OrderInfos).filter(c.OrderInfos.slip_code == code.value).first()
         if row is None:
             return None
 
         return c.to_entity(row)
 
     def find_data_byid(self, id: order.id) -> Optional[OrderInfoEntity]:
-        row = s.session.query(c.OrderInfos).filter(c.OrderInfos.id == id.value).first()
+        row = s.session.query(c.OrderInfos).filter(c.OrderInfos.order_id == id.value).first()
         if row is None:
             return None
 
@@ -44,7 +44,7 @@ class MySqlOrderInfos(OrderInfosRepository):
 
     def update_data(self, orderinfo: OrderInfoEntity):
         s.session.begin()
-        found = s.session.query(c.OrderInfos).filter(c.OrderInfos.id == orderinfo.id.value).first()
+        found = s.session.query(c.OrderInfos).filter(c.OrderInfos.order_id == orderinfo.order_id.value).first()
         if found is None:
             return
 

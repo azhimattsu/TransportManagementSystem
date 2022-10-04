@@ -5,98 +5,98 @@ from tms.domain.valueobjects import common, order
 
 @dataclass(init=False, eq=True)
 class OrderInfoEntity:
-    id: order.Id
-    slipcode: order.SlipCode
-    customercode: order.CustomerCode
-    customername: order.Name
-    salesofficecode: order.SalesOfficeCode
-    salesofficename: order.Name
-    loadingdate: common.CDateTime
-    carryindate: common.CDateTime
-    billingdate: common.CDateTime
-    loadingareacode: order.LoadingAreaCode
-    loadingareaname: order.Name
-    loadingareaphone: order.PhoneNumber
-    loadingareaaddress1: order.Address
-    loadingareaaddress2: order.Address
-    workingareacode: order.WorkingAreaCode
-    workingareaname: order.Name
-    workingareaphone: order.PhoneNumber
-    workingareaaddress1: order.Address
-    workingareaaddress2: order.Address
-    carryinareacode: order.CarryInAreaCode
-    carryinareaname: order.Name
-    carryinareaphone: order.PhoneNumber
-    carryinareaaddress1: order.Address
-    carryinareaaddress2: order.Address
+    order_id: order.Id
+    slip_code: order.SlipCode
+    customer_code: order.CustomerCode
+    customer_name: order.Name
+    salesoffice_code: order.SalesOfficeCode
+    salesoffice_name: order.Name
+    loading_date: common.CDateTime
+    carryin_date: common.CDateTime
+    billing_date: common.CDateTime
+    loading_area_code: order.LoadingAreaCode
+    loading_area_name: order.Name
+    loading_area_phone: order.PhoneNumber
+    loading_area_address1: order.Address
+    loading_area_address2: order.Address
+    working_area_code: order.WorkingAreaCode
+    working_area_name: order.Name
+    working_area_phone: order.PhoneNumber
+    working_area_address1: order.Address
+    working_area_address2: order.Address
+    carryin_area_code: order.CarryInAreaCode
+    carryin_area_name: order.Name
+    carryin_area_phone: order.PhoneNumber
+    carryin_area_address1: order.Address
+    carryin_area_address2: order.Address
     remark: order.Remark
-    destinataioncode: order.DestinationCode
-    destinataionname: order.Name
-    createuser: common.MailAddress
-    updateuser: common.MailAddress
+    destinataion_code: order.DestinationCode
+    destinataion_name: order.Name
+    create_user: common.MailAddress
+    update_user: common.MailAddress
     create_at: common.CDateTime
     update_at: common.CDateTime
 
     def __init__(self,
-                 id: order.Id,
-                 slipcode: order.SlipCode,
-                 customercode: order.CustomerCode,
-                 customername: order.Name,
-                 salesofficecode: order.SalesOfficeCode,
-                 salesofficename: order.Name,
-                 loadingdate: common.CDateTime,
-                 carryindate: common.CDateTime,
-                 billingdate: common.CDateTime,
-                 loadingareacode: order.LoadingAreaCode,
-                 loadingareaname: order.Name,
-                 loadingareaphone: order.PhoneNumber,
-                 loadingareaaddress1: order.Address,
-                 loadingareaaddress2: order.Address,
-                 workingareacode: order.WorkingAreaCode,
-                 workingareaname: order.Name,
-                 workingareaphone: order.PhoneNumber,
-                 workingareaaddress1: order.Address,
-                 workingareaaddress2: order.Address,
-                 carryinareacode: order.CarryInAreaCode,
-                 carryinareaname: order.Name,
-                 carryinareaphone: order.PhoneNumber,
-                 carryinareaaddress1: order.Address,
-                 carryinareaaddress2: order.Address,
+                 order_id: order.Id,
+                 slip_code: order.SlipCode,
+                 customer_code: order.CustomerCode,
+                 customer_name: order.Name,
+                 salesoffice_code: order.SalesOfficeCode,
+                 salesoffice_name: order.Name,
+                 loading_date: common.CDateTime,
+                 carryin_date: common.CDateTime,
+                 billing_date: common.CDateTime,
+                 loading_area_code: order.LoadingAreaCode,
+                 loading_area_name: order.Name,
+                 loading_area_phone: order.PhoneNumber,
+                 loading_area_address1: order.Address,
+                 loading_area_address2: order.Address,
+                 working_area_code: order.WorkingAreaCode,
+                 working_area_name: order.Name,
+                 working_area_phone: order.PhoneNumber,
+                 working_area_address1: order.Address,
+                 working_area_address2: order.Address,
+                 carryin_area_code: order.CarryInAreaCode,
+                 carryin_area_name: order.Name,
+                 carryin_area_phone: order.PhoneNumber,
+                 carryin_area_address1: order.Address,
+                 carryin_area_address2: order.Address,
                  remark: order.Remark,
-                 destinataioncode: order.DestinationCode,
-                 destinataionname: order.Name,
-                 createuser: common.MailAddress,
-                 updateuser: common.MailAddress,
+                 destinataion_code: order.DestinationCode,
+                 destinataion_name: order.Name,
+                 create_user: common.MailAddress,
+                 update_user: common.MailAddress,
                  create_at: common.CDateTime,
                  update_at: common.CDateTime):
-        self.id = id
-        self.slipcode = slipcode
-        self.customercode = customercode
-        self.customername = customername
-        self.salesofficecode = salesofficecode
-        self.salesofficename = salesofficename
-        self.loadingdate = loadingdate
-        self.carryindate = carryindate
-        self.billingdate = billingdate
-        self.loadingareacode = loadingareacode
-        self.loadingareaname = loadingareaname
-        self.loadingareaphone = loadingareaphone
-        self.loadingareaaddress1 = loadingareaaddress1
-        self.loadingareaaddress2 = loadingareaaddress2
-        self.workingareacode = workingareacode
-        self.workingareaname = workingareaname
-        self.workingareaphone = workingareaphone
-        self.workingareaaddress1 = workingareaaddress1
-        self.workingareaaddress2 = workingareaaddress2
-        self.carryinareacode = carryinareacode
-        self.carryinareaname = carryinareaname
-        self.carryinareaphone = carryinareaphone
-        self.carryinareaaddress1 = carryinareaaddress1
-        self.carryinareaaddress2 = carryinareaaddress2
+        self.order_id = order_id
+        self.slip_code = slip_code
+        self.customer_code = customer_code
+        self.customer_name = customer_name
+        self.salesoffice_code = salesoffice_code
+        self.salesoffice_name = salesoffice_name
+        self.loading_date = loading_date
+        self.carryin_date = carryin_date
+        self.billing_date = billing_date
+        self.loading_area_code = loading_area_code
+        self.loading_area_name = loading_area_name
+        self.loading_area_phone = loading_area_phone
+        self.loading_area_address1 = loading_area_address1
+        self.loading_area_address2 = loading_area_address2
+        self.working_area_code = working_area_code
+        self.working_area_name = working_area_name
+        self.working_area_phone = working_area_phone
+        self.working_area_address1 = working_area_address1
+        self.working_area_address2 = working_area_address2
+        self.carryin_area_code = carryin_area_code
+        self.carryin_area_name = carryin_area_name
+        self.carryin_area_phone = carryin_area_phone
+        self.carryin_area_address1 = carryin_area_address1
+        self.carryin_area_address2 = carryin_area_address2
         self.remark = remark
-        self.destinataioncode = destinataioncode
-        self.destinataionname = destinataionname
-        self.createuser = createuser
-        self.updateuser = updateuser
+        self.destinataion_code = destinataion_code
+        self.destinataion_name = destinataion_name
+        self.create_user = create_user
+        self.update_user = update_user
         self.create_at = create_at
         self.update_at = update_at

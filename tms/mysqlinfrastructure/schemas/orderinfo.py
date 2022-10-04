@@ -11,135 +11,135 @@ from tms.domain.valueobjects import common, order
 
 class OrderInfos(Base):
     __tablename__ = "orderinfo"
-    id = Column(String(64), primary_key=True, nullable=False)
-    slipcode = Column(String(10), nullable=False)
-    customercode = Column(String(10), nullable=False)
-    customername = Column(String(40), nullable=False)
-    salesofficecode = Column(String(10), nullable=False)
-    salesofficename = Column(String(40), nullable=False)
-    loadingdate = Column(DateTime, default=datetime.utcnow)
-    carryindate = Column(DateTime, default=datetime.utcnow)
-    billingdate = Column(DateTime, default=datetime.utcnow)
-    loadingareacode = Column(String(10), nullable=False)
-    loadingareaname = Column(String(40), nullable=False)
-    loadingareaphone = Column(String(11), nullable=False)
-    loadingareaaddress1 = Column(String(60), nullable=False)
-    loadingareaaddress2 = Column(String(60), nullable=False)
-    workingareacode = Column(String(10), nullable=False)
-    workingareaname = Column(String(40), nullable=False)
-    workingareaphone = Column(String(11), nullable=False)
-    workingareaaddress1 = Column(String(60), nullable=False)
-    workingareaaddress2 = Column(String(60), nullable=False)
-    carryinareacode = Column(String(10), nullable=False)
-    carryinareaname = Column(String(40), nullable=False)
-    carryinareaphone = Column(String(11), nullable=False)
-    carryinareaaddress1 = Column(String(60), nullable=False)
-    carryinareaaddress2 = Column(String(60), nullable=False)
+    order_id = Column(String(64), primary_key=True, nullable=False)
+    slip_code = Column(String(10), nullable=False)
+    customer_code = Column(String(10), nullable=False)
+    customer_name = Column(String(40), nullable=False)
+    salesoffice_code = Column(String(10), nullable=False)
+    salesoffice_name = Column(String(40), nullable=False)
+    loading_date = Column(DateTime, default=datetime.utcnow)
+    carryin_date = Column(DateTime, default=datetime.utcnow)
+    billing_date = Column(DateTime, default=datetime.utcnow)
+    loading_area_code = Column(String(10), nullable=False)
+    loading_area_name = Column(String(40), nullable=False)
+    loading_area_phone = Column(String(11), nullable=False)
+    loading_area_address1 = Column(String(60), nullable=False)
+    loading_area_address2 = Column(String(60), nullable=False)
+    working_area_code = Column(String(10), nullable=False)
+    working_area_name = Column(String(40), nullable=False)
+    working_area_phone = Column(String(11), nullable=False)
+    working_area_address1 = Column(String(60), nullable=False)
+    working_area_address2 = Column(String(60), nullable=False)
+    carryin_area_code = Column(String(10), nullable=False)
+    carryin_area_name = Column(String(40), nullable=False)
+    carryin_area_phone = Column(String(11), nullable=False)
+    carryin_area_address1 = Column(String(60), nullable=False)
+    carryin_area_address2 = Column(String(60), nullable=False)
     remark = Column(String(60), nullable=False)
-    destinataioncode = Column(String(10), nullable=False)
-    destinataionname = Column(String(40), nullable=False)
-    createuser = Column(String(60))
-    updateuser = Column(String(60))
+    destinataion_code = Column(String(10), nullable=False)
+    destinataion_name = Column(String(40), nullable=False)
+    create_user = Column(String(60))
+    update_user = Column(String(60))
     create_at = Column(DateTime, server_default=current_timestamp())
     update_at = Column(DateTime, server_default=current_timestamp())
 
     def import_entity(self, entity: OrderInfoEntity):
-        self.id = entity.id.value
-        self.slipcode = entity.slipcode.value
-        self.customercode = entity.customercode.value
-        self.customername = entity.customername.value
-        self.salesofficecode = entity.salesofficecode.value
-        self.salesofficename = entity.salesofficename.value
-        self.loadingdate = entity.loadingdate.value
-        self.carryindate = entity.carryindate.value
-        self.billingdate = entity.billingdate.value
-        self.loadingareacode = entity.loadingareacode.value
-        self.loadingareaname = entity.loadingareaname.value
-        self.loadingareaphone = entity.loadingareaphone.value
-        self.loadingareaaddress1 = entity.loadingareaaddress1.value
-        self.loadingareaaddress2 = entity.loadingareaaddress2.value
-        self.workingareacode = entity.workingareacode.value
-        self.workingareaname = entity.workingareaname.value
-        self.workingareaphone = entity.workingareaphone.value
-        self.workingareaaddress1 = entity.workingareaaddress1.value
-        self.workingareaaddress2 = entity.workingareaaddress2.value
-        self.carryinareacode = entity.carryinareacode.value
-        self.carryinareaname = entity.carryinareaname.value
-        self.carryinareaphone = entity.carryinareaphone.value
-        self.carryinareaaddress1 = entity.carryinareaaddress1.value
-        self.carryinareaaddress2 = entity.carryinareaaddress2.value
+        self.order_id = entity.order_id.value
+        self.slip_code = entity.slip_code.value
+        self.customer_code = entity.customer_code.value
+        self.customer_name = entity.customer_name.value
+        self.salesoffice_code = entity.salesoffice_code.value
+        self.salesoffice_name = entity.salesoffice_name.value
+        self.loading_date = entity.loading_date.value
+        self.carryin_date = entity.carryin_date.value
+        self.billing_date = entity.billing_date.value
+        self.loading_area_code = entity.loading_area_code.value
+        self.loading_area_name = entity.loading_area_name.value
+        self.loading_area_phone = entity.loading_area_phone.value
+        self.loading_area_address1 = entity.loading_area_address1.value
+        self.loading_area_address2 = entity.loading_area_address2.value
+        self.working_area_code = entity.working_area_code.value
+        self.working_area_name = entity.working_area_name.value
+        self.working_area_phone = entity.working_area_phone.value
+        self.working_area_address1 = entity.working_area_address1.value
+        self.working_area_address2 = entity.working_area_address2.value
+        self.carryin_area_code = entity.carryin_area_code.value
+        self.carryin_area_name = entity.carryin_area_name.value
+        self.carryin_area_phone = entity.carryin_area_phone.value
+        self.carryin_area_address1 = entity.carryin_area_address1.value
+        self.carryin_area_address2 = entity.carryin_area_address2.value
         self.remark = entity.remark.value
-        self.destinataioncode = entity.destinataioncode.value
-        self.destinataionname = entity.destinataionname.value
-        self.createuser = entity.createuser.value
-        self.updateuser = entity.updateuser.value
+        self.destinataion_code = entity.destinataion_code.value
+        self.destinataion_name = entity.destinataion_name.value
+        self.create_user = entity.create_user.value
+        self.update_user = entity.update_user.value
 
 
 def from_entity(entity: OrderInfoEntity) -> OrderInfos:
     target = OrderInfos()
-    target.id = entity.id.value
-    target.slipcode = entity.slipcode.value
-    target.customercode = entity.customercode.value
-    target.customername = entity.customername.value
-    target.salesofficecode = entity.salesofficecode.value
-    target.salesofficename = entity.salesofficename.value
-    target.loadingdate = entity.loadingdate.value
-    target.carryindate = entity.carryindate.value
-    target.billingdate = entity.billingdate.value
-    target.loadingareacode = entity.loadingareacode.value
-    target.loadingareaname = entity.loadingareaname.value
-    target.loadingareaphone = entity.loadingareaphone.value
-    target.loadingareaaddress1 = entity.loadingareaaddress1.value
-    target.loadingareaaddress2 = entity.loadingareaaddress2.value
-    target.workingareacode = entity.workingareacode.value
-    target.workingareaname = entity.workingareaname.value
-    target.workingareaphone = entity.workingareaphone.value
-    target.workingareaaddress1 = entity.workingareaaddress1.value
-    target.workingareaaddress2 = entity.workingareaaddress2.value
-    target.carryinareacode = entity.carryinareacode.value
-    target.carryinareaname = entity.carryinareaname.value
-    target.carryinareaphone = entity.carryinareaphone.value
-    target.carryinareaaddress1 = entity.carryinareaaddress1.value
-    target.carryinareaaddress2 = entity.carryinareaaddress2.value
+    target.order_id = entity.order_id.value
+    target.slip_code = entity.slip_code.value
+    target.customer_code = entity.customer_code.value
+    target.customer_name = entity.customer_name.value
+    target.salesoffice_code = entity.salesoffice_code.value
+    target.salesoffice_name = entity.salesoffice_name.value
+    target.loading_date = entity.loading_date.value
+    target.carryin_date = entity.carryin_date.value
+    target.billing_date = entity.billing_date.value
+    target.loading_area_code = entity.loading_area_code.value
+    target.loading_area_name = entity.loading_area_name.value
+    target.loading_area_phone = entity.loading_area_phone.value
+    target.loading_area_address1 = entity.loading_area_address1.value
+    target.loading_area_address2 = entity.loading_area_address2.value
+    target.working_area_code = entity.working_area_code.value
+    target.working_area_name = entity.working_area_name.value
+    target.working_area_phone = entity.working_area_phone.value
+    target.working_area_address1 = entity.working_area_address1.value
+    target.working_area_address2 = entity.working_area_address2.value
+    target.carryin_area_code = entity.carryin_area_code.value
+    target.carryin_area_name = entity.carryin_area_name.value
+    target.carryin_area_phone = entity.carryin_area_phone.value
+    target.carryin_area_address1 = entity.carryin_area_address1.value
+    target.carryin_area_address2 = entity.carryin_area_address2.value
     target.remark = entity.remark.value
-    target.destinataioncode = entity.destinataioncode.value
-    target.destinataionname = entity.destinataionname.value
-    target.createuser = entity.createuser.value
-    target.updateuser = entity.updateuser.value
+    target.destinataion_code = entity.destinataion_code.value
+    target.destinataion_name = entity.destinataion_name.value
+    target.create_user = entity.create_user.value
+    target.update_user = entity.update_user.value
 
     return target
 
 
 def to_entity(row: OrderInfos) -> OrderInfoEntity:
-    target = OrderInfoEntity(order.Id(row.id),
-                             order.SlipCode(row.slipcode),
-                             order.CustomerCode(row.customercode),
-                             order.Name(row.customername),
-                             order.SalesOfficeCode(row.salesofficecode),
-                             order.Name(row.salesofficename),
-                             CDateTime(row.loadingdate),
-                             CDateTime(row.carryindate),
-                             CDateTime(row.billingdate),
-                             order.LoadingAreaCode(row.loadingareacode),
-                             order.Name(row.loadingareaname),
-                             order.PhoneNumber(row.loadingareaphone),
-                             order.Address(row.loadingareaaddress1),
-                             order.Address(row.loadingareaaddress2),
-                             order.WorkingAreaCode(row.workingareacode),
-                             order.Name(row.workingareaname),
-                             order.PhoneNumber(row.workingareaphone),
-                             order.Address(row.workingareaaddress1),
-                             order.Address(row.workingareaaddress2),
-                             order.CarryInAreaCode(row.carryinareacode),
-                             order.Name(row.carryinareaname),
-                             order.PhoneNumber(row.carryinareaphone),
-                             order.Address(row.carryinareaaddress1),
-                             order.Address(row.carryinareaaddress2),
+    target = OrderInfoEntity(order.Id(row.order_id),
+                             order.SlipCode(row.slip_code),
+                             order.CustomerCode(row.customer_code),
+                             order.Name(row.customer_name),
+                             order.SalesOfficeCode(row.salesoffice_code),
+                             order.Name(row.salesoffice_name),
+                             CDateTime(row.loading_date),
+                             CDateTime(row.carryin_date),
+                             CDateTime(row.billing_date),
+                             order.LoadingAreaCode(row.loading_area_code),
+                             order.Name(row.loading_area_name),
+                             order.PhoneNumber(row.loading_area_phone),
+                             order.Address(row.loading_area_address1),
+                             order.Address(row.loading_area_address2),
+                             order.WorkingAreaCode(row.working_area_code),
+                             order.Name(row.working_area_name),
+                             order.PhoneNumber(row.working_area_phone),
+                             order.Address(row.working_area_address1),
+                             order.Address(row.working_area_address2),
+                             order.CarryInAreaCode(row.carryin_area_code),
+                             order.Name(row.carryin_area_name),
+                             order.PhoneNumber(row.carryin_area_phone),
+                             order.Address(row.carryin_area_address1),
+                             order.Address(row.carryin_area_address2),
                              order.Remark(row.remark),
-                             order.DestinationCode(row.destinataioncode),
-                             order.Name(row.destinataionname),
-                             common.MailAddress(row.createuser),
-                             common.MailAddress(row.updateuser),
+                             order.DestinationCode(row.destinataion_code),
+                             order.Name(row.destinataion_name),
+                             common.MailAddress(row.create_user),
+                             common.MailAddress(row.update_user),
                              CDateTime(row.create_at),
                              CDateTime(row.update_at))
 
