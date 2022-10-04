@@ -10,7 +10,7 @@ from tms.domain.entities.dispatchinfo import DispatchInfoEntity
 from tms.domain.valueobjects import container
 
 
-class DispatchInfos(Base):
+class DispatchInfo(Base):
     __tablename__ = "dispatchinfo"
     container_id = Column(String(64), primary_key=True, nullable=False)
     day = Column(DateTime, primary_key=True, default=datetime.utcnow)
@@ -48,9 +48,9 @@ class DispatchInfos(Base):
         self.update_user = entity.update_user.value
 
 
-def from_entity(entity: DispatchInfoEntity) -> DispatchInfos:
+def from_entity(entity: DispatchInfoEntity) -> DispatchInfo:
     print(entity)
-    target = DispatchInfos()
+    target = DispatchInfo()
     target.container_id = entity.container_id.value
     target.day = entity.day.value
     target.index = entity.index
@@ -69,7 +69,7 @@ def from_entity(entity: DispatchInfoEntity) -> DispatchInfos:
     return target
 
 
-def to_entity(row: DispatchInfos) -> DispatchInfoEntity:
+def to_entity(row: DispatchInfo) -> DispatchInfoEntity:
     target = DispatchInfoEntity(container.Id(row.container_id),
                                 common.CDateTime(row.day),
                                 row.index,

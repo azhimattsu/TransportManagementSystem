@@ -9,7 +9,7 @@ from tms.domain.entities.container import ContainerEntity
 from tms.domain.valueobjects import container
 
 
-class Containers(Base):
+class Container(Base):
     __tablename__ = "container"
     container_id = Column(String(64), primary_key=True, nullable=False)
     container_code = Column(String(11), nullable=False)
@@ -35,8 +35,8 @@ class Containers(Base):
         self.update_user = entity.update_user.value
 
 
-def from_entity(entity: ContainerEntity) -> Containers:
-    target = Containers()
+def from_entity(entity: ContainerEntity) -> Container:
+    target = Container()
     target.container_id = entity.container_id.value
     target.container_code = entity.container_code.value
     target.type = int(entity.type)
@@ -49,7 +49,7 @@ def from_entity(entity: ContainerEntity) -> Containers:
     return target
 
 
-def to_entity(row: Containers) -> ContainerEntity:
+def to_entity(row: Container) -> ContainerEntity:
     target = ContainerEntity(container.Id(row.container_id),
                              container.Code(row.container_code),
                              container.Type(row.type),

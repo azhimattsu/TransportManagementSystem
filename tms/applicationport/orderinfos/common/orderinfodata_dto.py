@@ -1,14 +1,14 @@
 from tms.domain.valueobjects import common
 from tms.domain.services.create_orderinfo_service import CreateOrderInfoService
 from tms.domain.valueobjects import order
-from tms.domain.entities.orderinfo import OrderInfoEntity
+from tms.domain.entities.orderinfo_base import OrderInfoBaseEntity
 from .orderinfodata import OrderInfoData
 
 
 class OrderInfoDataDto:
 
     @staticmethod
-    def from_entity(orderinfo: OrderInfoEntity) -> OrderInfoData:
+    def from_entity(orderinfo: OrderInfoBaseEntity) -> OrderInfoData:
         model = OrderInfoData(orderinfo.order_id.value,
                               orderinfo.slip_code.value,
                               orderinfo.customer_code.value,
@@ -43,8 +43,8 @@ class OrderInfoDataDto:
         return model
 
     @staticmethod
-    def to_entity(orderinfodata: OrderInfoData) -> OrderInfoEntity:
-        entity = OrderInfoEntity(order.Id(orderinfodata.order_id),
+    def to_entity(orderinfodata: OrderInfoData) -> OrderInfoBaseEntity:
+        entity = OrderInfoBaseEntity(order.Id(orderinfodata.order_id),
                                  order.SlipCode(orderinfodata.slip_code),
                                  order.CustomerCode(orderinfodata.customer_code),
                                  order.Name(orderinfodata.customer_name),
@@ -79,8 +79,8 @@ class OrderInfoDataDto:
         return entity
 
     @staticmethod
-    def CreateEntity(orderinfodata: OrderInfoData) -> OrderInfoEntity:
-        entity = OrderInfoEntity(CreateOrderInfoService.get_orderInfoid(),
+    def CreateEntity(orderinfodata: OrderInfoData) -> OrderInfoBaseEntity:
+        entity = OrderInfoBaseEntity(CreateOrderInfoService.get_orderInfoid(),
                                  order.SlipCode(orderinfodata.slip_code),
                                  order.CustomerCode(orderinfodata.customer_code),
                                  order.Name(orderinfodata.customer_name),

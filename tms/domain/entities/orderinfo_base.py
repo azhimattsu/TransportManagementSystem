@@ -4,7 +4,7 @@ from tms.domain.valueobjects import common, order
 
 
 @dataclass(init=False, eq=True)
-class OrderInfoEntity:
+class OrderInfoBaseEntity:
     order_id: order.Id
     slip_code: order.SlipCode
     customer_code: order.CustomerCode

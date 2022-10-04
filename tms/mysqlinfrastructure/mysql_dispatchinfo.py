@@ -16,7 +16,7 @@ class MySqlDispatchInfos(DispatchInfosRepository):
         results: list[DispatchInfoEntity] = []
         results.clear()
 
-        rows = s.session.query(c.DispatchInfos).all()
+        rows = s.session.query(c.DispatchInfo).all()
         for row in rows:
             results.append(c.to_entity(row))
 
@@ -26,7 +26,7 @@ class MySqlDispatchInfos(DispatchInfosRepository):
         results: list[DispatchInfoEntity] = []
         results.clear()
 
-        rows = s.session.query(c.DispatchInfos).filter(and_(c.DispatchInfos.container_id == id.value, c.DispatchInfos.day == day)).all()
+        rows = s.session.query(c.DispatchInfo).filter(and_(c.DispatchInfo.container_id == id.value, c.DispatchInfo.day == day)).all()
 
         for row in rows:
             results.append(c.to_entity(row))
@@ -41,9 +41,9 @@ class MySqlDispatchInfos(DispatchInfosRepository):
 
     def update_data(self, dispatchinfo: DispatchInfoEntity):
         s.session.begin()
-        found = s.session.query(c.DispatchInfos).filter(and_(c.DispatchInfos.container_id == dispatchinfo.container_id.value,
-                                                             c.DispatchInfos.day == dispatchinfo.day.value,
-                                                             c.DispatchInfos.index == dispatchinfo.index)).first()
+        found = s.session.query(c.DispatchInfo).filter(and_(c.DispatchInfo.container_id == dispatchinfo.container_id.value,
+                                                             c.DispatchInfo.day == dispatchinfo.day.value,
+                                                             c.DispatchInfo.index == dispatchinfo.index)).first()
         if found is None:
             return
 

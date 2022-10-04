@@ -5,12 +5,12 @@ from sqlalchemy import DateTime
 from sqlalchemy.sql.functions import current_timestamp
 from tms.domain.valueobjects.common.cdatetime import CDateTime
 from tms.mysqlinfrastructure.mysql_setting import Base
-from tms.domain.entities.orderinfo import OrderInfoEntity
+from tms.domain.entities.orderinfo_base import OrderInfoBaseEntity
 from tms.domain.valueobjects import common, order
 
 
-class OrderInfos(Base):
-    __tablename__ = "orderinfo"
+class OrderInfoBase(Base):
+    __tablename__ = "orderinfo_base"
     order_id = Column(String(64), primary_key=True, nullable=False)
     slip_code = Column(String(10), nullable=False)
     customer_code = Column(String(10), nullable=False)
@@ -43,7 +43,7 @@ class OrderInfos(Base):
     create_at = Column(DateTime, server_default=current_timestamp())
     update_at = Column(DateTime, server_default=current_timestamp())
 
-    def import_entity(self, entity: OrderInfoEntity):
+    def import_entity(self, entity: OrderInfoBaseEntity):
         self.order_id = entity.order_id.value
         self.slip_code = entity.slip_code.value
         self.customer_code = entity.customer_code.value
@@ -75,8 +75,8 @@ class OrderInfos(Base):
         self.update_user = entity.update_user.value
 
 
-def from_entity(entity: OrderInfoEntity) -> OrderInfos:
-    target = OrderInfos()
+def from_entity(entity: OrderInfoBaseEntity) -> OrderInfoBase:
+    target = OrderInfoBase()
     target.order_id = entity.order_id.value
     target.slip_code = entity.slip_code.value
     target.customer_code = entity.customer_code.value
@@ -110,37 +110,37 @@ def from_entity(entity: OrderInfoEntity) -> OrderInfos:
     return target
 
 
-def to_entity(row: OrderInfos) -> OrderInfoEntity:
-    target = OrderInfoEntity(order.Id(row.order_id),
-                             order.SlipCode(row.slip_code),
-                             order.CustomerCode(row.customer_code),
-                             order.Name(row.customer_name),
-                             order.SalesOfficeCode(row.salesoffice_code),
-                             order.Name(row.salesoffice_name),
-                             CDateTime(row.loading_date),
-                             CDateTime(row.carryin_date),
-                             CDateTime(row.billing_date),
-                             order.LoadingAreaCode(row.loading_area_code),
-                             order.Name(row.loading_area_name),
-                             order.PhoneNumber(row.loading_area_phone),
-                             order.Address(row.loading_area_address1),
-                             order.Address(row.loading_area_address2),
-                             order.WorkingAreaCode(row.working_area_code),
-                             order.Name(row.working_area_name),
-                             order.PhoneNumber(row.working_area_phone),
-                             order.Address(row.working_area_address1),
-                             order.Address(row.working_area_address2),
-                             order.CarryInAreaCode(row.carryin_area_code),
-                             order.Name(row.carryin_area_name),
-                             order.PhoneNumber(row.carryin_area_phone),
-                             order.Address(row.carryin_area_address1),
-                             order.Address(row.carryin_area_address2),
-                             order.Remark(row.remark),
-                             order.DestinationCode(row.destinataion_code),
-                             order.Name(row.destinataion_name),
-                             common.MailAddress(row.create_user),
-                             common.MailAddress(row.update_user),
-                             CDateTime(row.create_at),
-                             CDateTime(row.update_at))
+def to_entity(row: OrderInfoBase) -> OrderInfoBaseEntity:
+    target = OrderInfoBaseEntity(order.Id(row.order_id),
+                                 order.SlipCode(row.slip_code),
+                                 order.CustomerCode(row.customer_code),
+                                 order.Name(row.customer_name),
+                                 order.SalesOfficeCode(row.salesoffice_code),
+                                 order.Name(row.salesoffice_name),
+                                 CDateTime(row.loading_date),
+                                 CDateTime(row.carryin_date),
+                                 CDateTime(row.billing_date),
+                                 order.LoadingAreaCode(row.loading_area_code),
+                                 order.Name(row.loading_area_name),
+                                 order.PhoneNumber(row.loading_area_phone),
+                                 order.Address(row.loading_area_address1),
+                                 order.Address(row.loading_area_address2),
+                                 order.WorkingAreaCode(row.working_area_code),
+                                 order.Name(row.working_area_name),
+                                 order.PhoneNumber(row.working_area_phone),
+                                 order.Address(row.working_area_address1),
+                                 order.Address(row.working_area_address2),
+                                 order.CarryInAreaCode(row.carryin_area_code),
+                                 order.Name(row.carryin_area_name),
+                                 order.PhoneNumber(row.carryin_area_phone),
+                                 order.Address(row.carryin_area_address1),
+                                 order.Address(row.carryin_area_address2),
+                                 order.Remark(row.remark),
+                                 order.DestinationCode(row.destinataion_code),
+                                 order.Name(row.destinataion_name),
+                                 common.MailAddress(row.create_user),
+                                 common.MailAddress(row.update_user),
+                                 CDateTime(row.create_at),
+                                 CDateTime(row.update_at))
 
     return target

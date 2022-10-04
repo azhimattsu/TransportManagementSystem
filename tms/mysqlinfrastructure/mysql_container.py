@@ -17,7 +17,7 @@ class MySqlContainers(ContainersRepository):
         results: list[ContainerEntity] = []
         results.clear()
 
-        rows = s.session.query(c.Containers).all()
+        rows = s.session.query(c.Container).all()
         for row in rows:
             results.append(c.to_entity(row))
 
@@ -25,14 +25,14 @@ class MySqlContainers(ContainersRepository):
 
     def find_data_bycode(self,
                          code: container.Code) -> Optional[ContainerEntity]:
-        row = s.session.query(c.Containers).filter(c.Containers.container_code == code.value).first()
+        row = s.session.query(c.Container).filter(c.Container.container_code == code.value).first()
         if row is None:
             return None
 
         return c.to_entity(row)
 
     def find_data_byid(self, id: container.id) -> Optional[ContainerEntity]:
-        row = s.session.query(c.Containers).filter(c.Containers.container_id == id.value).first()
+        row = s.session.query(c.Container).filter(c.Container.container_id == id.value).first()
         if row is None:
             return None
 
@@ -44,7 +44,7 @@ class MySqlContainers(ContainersRepository):
 
     def update_data(self, container: ContainerEntity):
         s.session.begin()
-        found = s.session.query(c.Containers).filter(c.Containers.container_id == container.container_id.value).first()
+        found = s.session.query(c.Container).filter(c.Container.container_id == container.container_id.value).first()
         if found is None:
             return
 
