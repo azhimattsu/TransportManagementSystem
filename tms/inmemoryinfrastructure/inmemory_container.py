@@ -50,7 +50,6 @@ class InMemoryContainers(ContainersRepository):
 
     def create_data(self, container: ContainerEntity):
         self.containers.append(container)
-        print(self.containers)
 
     def update_data(self, container: ContainerEntity):
         pass
