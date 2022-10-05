@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 @dataclass(init=False, eq=True)
-class OrderInfoData:
+class OrderInfoBaseData:
     order_id: str
     slip_code: str
     customer_code: str

@@ -1,6 +1,8 @@
+from dataclasses import dataclass
 from tms.domain.valueobjects import container
 
 
+@dataclass(init=False, eq=True)
 class ContainerParts:
     type: container.type
     tw: container.TareWeight

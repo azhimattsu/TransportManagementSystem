@@ -31,7 +31,7 @@ class MySqlContainers(ContainersRepository):
 
         return c.to_entity(row)
 
-    def find_data_byid(self, id: container.id) -> Optional[ContainerEntity]:
+    def find_data_byid(self, id: container.Id) -> Optional[ContainerEntity]:
         row = s.session.query(c.Container).filter(c.Container.container_id == id.value).first()
         if row is None:
             return None

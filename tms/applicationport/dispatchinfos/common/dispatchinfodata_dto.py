@@ -1,5 +1,4 @@
 from tms.domain.valueobjects import common, order
-from tms.domain.services.create_container_service import CreateContainerService
 from tms.domain.valueobjects import container
 from tms.domain.valueobjects import dispatch
 from tms.domain.entities.dispatchinfo import DispatchInfoEntity

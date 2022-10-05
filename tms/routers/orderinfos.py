@@ -7,13 +7,13 @@ from tms.domain.helpers.exception import DomainException
 
 from tms.mysqlinfrastructure.mysql_orderinfo import MySqlOrderInfos
 
-from tms.applicationport.orderinfos.common.orderinfodata import OrderInfoData
-from tms.application.orderinfos.orderinfos_get_interactor import OrderInfosGetInteractor
-from tms.application.orderinfos.orderinfos_getall_interactor import OrderInfosGetAllInteractor
-from tms.application.orderinfos.orderinfos_post_interactor import OrderInfosPostInteractor
-from tms.applicationport.orderinfos.post.orderinfo_post_inputdata import OrderInfoPostInputData
-from tms.application.orderinfos.orderinfos_put_interactor import OrderInfosPutInteractor
-from tms.applicationport.orderinfos.put.orderinfo_put_inputdata import OrderInfoPutInputData
+from tms.applicationport.orderinfos.common.orderinfo_basedata import OrderInfoBaseData
+from tms.application.orderinfos.orderinfos_base_get_interactor import OrderInfosBaseGetInteractor
+from tms.application.orderinfos.orderinfos_base_getall_interactor import OrderInfosBaseGetAllInteractor
+from tms.application.orderinfos.orderinfos_base_post_interactor import OrderInfosBasePostInteractor
+from tms.applicationport.orderinfos.post.orderinfo_base_post_inputdata import OrderInfoBasePostInputData
+from tms.application.orderinfos.orderinfos_base_put_interactor import OrderInfosBasePutInteractor
+from tms.applicationport.orderinfos.put.orderinfo_base_put_inputdata import OrderInfoBasePutInputData
 
 router = APIRouter()
 
@@ -23,15 +23,15 @@ orderInfoRep = MySqlOrderInfos()
 
 
 @router.get("/orderinfos/")
-async def getOrderInfosAllData():
-    orderinfosGetUseCase = OrderInfosGetAllInteractor(rep=orderInfoRep)
+async def getOrderInfosBaseAllData():
+    orderinfosGetUseCase = OrderInfosBaseGetAllInteractor(rep=orderInfoRep)
     orderinfos = orderinfosGetUseCase.fetch_all_data()
     return orderinfos
 
 
 @router.get("/orderinfos/{slip_code}")
-async def getOrderInfosData(slip_code: str):
-    orderinfosGetUseCase = OrderInfosGetInteractor(rep=orderInfoRep)
+async def getOrderInfosBaseData(slip_code: str):
+    orderinfosGetUseCase = OrderInfosBaseGetInteractor(rep=orderInfoRep)
     outputData = orderinfosGetUseCase.find_data_bycode(slip_code)
     if outputData.orderinfo is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Item not found")
@@ -39,10 +39,10 @@ async def getOrderInfosData(slip_code: str):
 
 
 @router.post("/orderinfos/")
-async def postOrderInfoData(orderinfo: OrderInfoData):
+async def postOrderInfoBaseData(orderinfo: OrderInfoBaseData):
     try:
-        orderinfosUseCase = OrderInfosPostInteractor(rep=orderInfoRep)
-        command = OrderInfoPostInputData(orderinfo)
+        orderinfosUseCase = OrderInfosBasePostInteractor(rep=orderInfoRep)
+        command = OrderInfoBasePostInputData(orderinfo)
         orderinfosUseCase.create_data(command)
     except DomainException as e:
         raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,
@@ -50,10 +50,10 @@ async def postOrderInfoData(orderinfo: OrderInfoData):
 
 
 @router.put("/orderinfos/")
-async def putOrderInfoData(orderinfo: OrderInfoData):
+async def putOrderInfoData(orderinfo: OrderInfoBaseData):
     try:
-        orderinfosUseCase = OrderInfosPutInteractor(rep=orderInfoRep)
-        command = OrderInfoPutInputData(orderinfo)
+        orderinfosUseCase = OrderInfosBasePutInteractor(rep=orderInfoRep)
+        command = OrderInfoBasePutInputData(orderinfo)
         orderinfosUseCase.update_data(command)
     except DomainException as e:
         raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,
