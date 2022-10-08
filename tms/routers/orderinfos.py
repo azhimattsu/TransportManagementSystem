@@ -15,6 +15,8 @@ from tms.applicationport.orderinfos.post.orderinfo_base_post_inputdata import Or
 from tms.application.orderinfos.orderinfos_base_put_interactor import OrderInfosBasePutInteractor
 from tms.applicationport.orderinfos.put.orderinfo_base_put_inputdata import OrderInfoBasePutInputData
 
+from tms.application.orderinfos.orderinfos_get_interactor import OrderInfosGetInteractor
+
 router = APIRouter()
 
 # containerRep = MySqlContainers()
@@ -22,14 +24,14 @@ orderInfoRep = MySqlOrderInfos()
 # dispatchInfoRep = MySqlDispatchInfos()
 
 
-@router.get("/orderinfos/")
+@router.get("/orderinfos/base/")
 async def getOrderInfosBaseAllData():
     orderinfosGetUseCase = OrderInfosBaseGetAllInteractor(rep=orderInfoRep)
     orderinfos = orderinfosGetUseCase.fetch_all_data()
     return orderinfos
 
 
-@router.get("/orderinfos/{slip_code}")
+@router.get("/orderinfos/base/{slip_code}")
 async def getOrderInfosBaseData(slip_code: str):
     orderinfosGetUseCase = OrderInfosBaseGetInteractor(rep=orderInfoRep)
     outputData = orderinfosGetUseCase.find_data_bycode(slip_code)
@@ -38,7 +40,7 @@ async def getOrderInfosBaseData(slip_code: str):
     return outputData
 
 
-@router.post("/orderinfos/")
+@router.post("/orderinfos/base/")
 async def postOrderInfoBaseData(orderinfo: OrderInfoBaseData):
     try:
         orderinfosUseCase = OrderInfosBasePostInteractor(rep=orderInfoRep)
@@ -58,3 +60,12 @@ async def putOrderInfoData(orderinfo: OrderInfoBaseData):
     except DomainException as e:
         raise CustomHttpException(status_code=status.HTTP_400_BAD_REQUEST,
                                   exception=e)
+
+
+@router.get("/orderinfos/{slip_code}")
+async def getOrderInfosData(slip_code: str):
+    orderinfosGetUseCase = OrderInfosGetInteractor(rep=orderInfoRep)
+    outputData = orderinfosGetUseCase.find_data_bycode(slip_code)
+    if outputData.orderinfo is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Item not found")
+    return outputData

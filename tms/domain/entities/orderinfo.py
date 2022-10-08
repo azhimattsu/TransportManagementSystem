@@ -5,7 +5,7 @@ from tms.domain.entities.orderinfo_container import OrderInfoContainerEntity
 
 
 @dataclass(init=False, eq=True)
-class OrderInfoEntity(OrderInfoBaseEntity):
+class OrderInfoEntity():
     orderinfo: OrderInfoBaseEntity
     containers: list[OrderInfoContainerEntity]
 

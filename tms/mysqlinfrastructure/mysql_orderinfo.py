@@ -58,24 +58,22 @@ class MySqlOrderInfos(OrderInfosRepository):
         s.session.commit()
 
     def fetch_container_data_byorderid(self, id: order.Id) -> list[OrderInfoContainerEntity]:
-        row = s.session.query(oc.OrderInfoContainer).filter(oc.OrderInfoContainer.order_id == id.value).first()
-        if row is None:
+        results: list[OrderInfoContainerEntity] = []
+        results.clear()
+
+        rows = s.session.query(oc.OrderInfoContainer).filter(oc.OrderInfoContainer.order_id == id.value).all()
+        for row in rows:
+            results.append(oc.to_entity(row))
+
+        return results
+
+    def find_fulldata_bycode(self, code: order.SlipCode) -> Optional[OrderInfoEntity]:
+
+        entity_order = self.find_data_bycode(code)
+        if entity_order is None:
             return None
-
-        return oc.to_entity(row)
-
-    def find_fulldata_byid(self, id: order.Id) -> Optional[OrderInfoEntity]:
-
-        row_order = self.find_data_byid(id)
-        if row_order is None:
-            return None
-
-        entity_order = ob.to_entity(row_order)
 
         entity_containers: list[OrderInfoContainerEntity] = []
-
-        row_containers = self.fetch_container_data_byorderid(id)
-        for row_container in row_containers:
-            entity_containers.append(oc.to_entity(row_container))
+        entity_containers = self.fetch_container_data_byorderid(entity_order.order_id)
 
         return OrderInfoEntity(entity_order, entity_containers)

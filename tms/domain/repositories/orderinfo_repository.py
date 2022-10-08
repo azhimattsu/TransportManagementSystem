@@ -35,5 +35,5 @@ class OrderInfosRepository(metaclass=ABCMeta):
         pass
 
     @abstractclassmethod
-    def find_fulldata_byid(self, id: order.id) -> Optional[OrderInfoEntity]:
+    def find_fulldata_bycode(self, code: order.SlipCode) -> Optional[OrderInfoEntity]:
         pass
