@@ -7,57 +7,57 @@ from tms.domain.valueobjects import order
 
 @dataclass(init=False, eq=True)
 class DispatchInfoEntity:
-    containerId: container.Id
+    container_id: container.Id
     day: common.CDateTime
     index: int
-    orderinfoId: order.Id
-    workingtype: dispatch.WorkingType
-    contractortype: dispatch.ContractorType
-    drivercode: dispatch.DriverCode
-    vehiclenumber: dispatch.VehicleNumber
-    departurepoint: dispatch.PointCode
-    arrivalpoint: dispatch.PointCode
+    order_id: order.Id
+    working_type: dispatch.WorkingType
+    contractor_type: dispatch.ContractorType
+    driver_code: dispatch.DriverCode
+    vehicle_number: dispatch.VehicleNumber
+    departure_point: dispatch.PointCode
+    arrival_point: dispatch.PointCode
     sales: int
     cost: int
     remark: dispatch.Remark
-    createuser: common.MailAddress
-    updateuser: common.MailAddress
+    create_user: common.MailAddress
+    update_user: common.MailAddress
     create_at: common.CDateTime
     update_at: common.CDateTime
 
     def __init__(self,
-                 containerId: container.Id,
+                 container_id: container.Id,
                  day: common.CDateTime,
                  index: int,
-                 orderinfoId: order.Id,
-                 workingtype: dispatch.WorkingType,
-                 contractortype: dispatch.ContractorType,
-                 drivercode: dispatch.DriverCode,
-                 vehiclenumber: dispatch.VehicleNumber,
-                 departurepoint: dispatch.PointCode,
-                 arrivalpoint: dispatch.PointCode,
+                 order_id: order.Id,
+                 working_type: dispatch.WorkingType,
+                 contractor_type: dispatch.ContractorType,
+                 driver_code: dispatch.DriverCode,
+                 vehicle_number: dispatch.VehicleNumber,
+                 departure_point: dispatch.PointCode,
+                 arrival_point: dispatch.PointCode,
                  sales: int,
                  cost: int,
                  remark: dispatch.Remark,
-                 createuser: common.MailAddress,
-                 updateuser: common.MailAddress,
+                 create_user: common.MailAddress,
+                 update_user: common.MailAddress,
                  create_at: common.CDateTime,
                  update_at: common.CDateTime):
 
-        self.containerId = containerId
+        self.container_id = container_id
         self.day = day
         self.index = index
-        self.orderinfoId = orderinfoId
-        self.workingtype = workingtype
-        self.contractortype = contractortype
-        self.drivercode = drivercode
-        self.vehiclenumber = vehiclenumber
-        self.departurepoint = departurepoint
-        self.arrivalpoint = arrivalpoint
+        self.order_id = order_id
+        self.working_type = working_type
+        self.contractor_type = contractor_type
+        self.driver_code = driver_code
+        self.vehicle_number = vehicle_number
+        self.departure_point = departure_point
+        self.arrival_point = arrival_point
         self.sales = sales
         self.cost = cost
         self.remark = remark
-        self.createuser = createuser
-        self.updateuser = updateuser
+        self.create_user = create_user
+        self.update_user = update_user
         self.create_at = create_at
         self.update_at = update_at

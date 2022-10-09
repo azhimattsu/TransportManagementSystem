@@ -1,6 +1,6 @@
 from tms.applicationport.containers.common.containerdata_dto import ContainerDataDto
 from tms.applicationport.containers.post.container_post_inputdata import ContainerPostInputData
-from tms.domain.repositories.containers_repository import ContainersRepository
+from tms.domain.repositories.container_repository import ContainersRepository
 
 
 class ContainersPostInteractor:

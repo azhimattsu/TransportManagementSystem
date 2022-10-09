@@ -1,6 +1,6 @@
 from tms.applicationport.dispatchinfos.common.dispatchinfodata_dto import DispatchInfoDataDto
 from tms.applicationport.dispatchinfos.post.dispatchinfo_post_inputdata import DispatchInfoPostInputData
-from tms.domain.repositories.dispatchinfos_repository import DispatchInfosRepository
+from tms.domain.repositories.dispatchinfo_repository import DispatchInfosRepository
 
 
 class DispatchInfosPostInteractor:
@@ -10,6 +10,5 @@ class DispatchInfosPostInteractor:
         self.dispatchinfosRep = rep
 
     def create_data(self, command: DispatchInfoPostInputData):
-        print(command.dispatchinfo)
         entity = DispatchInfoDataDto.CreateEntity(command.dispatchinfo)
         self.dispatchinfosRep.create_data(entity)

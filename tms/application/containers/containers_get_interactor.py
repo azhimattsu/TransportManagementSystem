@@ -1,7 +1,7 @@
 from tms.domain.valueobjects import container
 from tms.applicationport.containers.common.containerdata_dto import ContainerDataDto
 from tms.applicationport.containers.get.container_get_outputdata import ContainerGetOutputData
-from tms.domain.repositories.containers_repository import ContainersRepository
+from tms.domain.repositories.container_repository import ContainersRepository
 
 
 class ContainersGetInteractor:
@@ -14,6 +14,6 @@ class ContainersGetInteractor:
         containerdata = None
         value = self.containerRep.find_data_bycode(container.Code(code))
         if value is not None:
-            containerdata = ContainerDataDto.fromEntity(value)
+            containerdata = ContainerDataDto.from_entity(value)
 
         return ContainerGetOutputData(containerdata)

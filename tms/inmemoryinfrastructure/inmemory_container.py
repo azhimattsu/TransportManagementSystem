@@ -2,7 +2,7 @@ from typing import Optional
 
 from tms.domain.valueobjects import container
 from tms.domain.entities.container import ContainerEntity
-from tms.domain.repositories.containers_repository import ContainersRepository
+from tms.domain.repositories.container_repository import ContainersRepository
 from tms.domain.valueobjects import common
 
 
@@ -50,7 +50,6 @@ class InMemoryContainers(ContainersRepository):
 
     def create_data(self, container: ContainerEntity):
         self.containers.append(container)
-        print(self.containers)
 
     def update_data(self, container: ContainerEntity):
         pass

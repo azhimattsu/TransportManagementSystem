@@ -17,7 +17,7 @@ class ContainersRepository(metaclass=ABCMeta):
         pass
 
     @abstractclassmethod
-    def find_data_byid(self, id: container.id) -> Optional[ContainerEntity]:
+    def find_data_byid(self, id: container.Id) -> Optional[ContainerEntity]:
         pass
 
     @abstractclassmethod

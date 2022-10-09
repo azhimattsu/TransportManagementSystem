@@ -1,6 +1,6 @@
 from tms.applicationport.containers.common.containerdata_dto import ContainerDataDto
 from tms.applicationport.containers.getall.container_getall_outputdata import ContainerGetAllOutputData
-from tms.domain.repositories.containers_repository import ContainersRepository
+from tms.domain.repositories.container_repository import ContainersRepository
 
 
 class ContainersGetAllInteractor:
@@ -14,6 +14,6 @@ class ContainersGetAllInteractor:
         values = self.containerRep.fetch_all_data()
 
         for value in values:
-            containerlist.append(ContainerDataDto.fromEntity(value))
+            containerlist.append(ContainerDataDto.from_entity(value))
 
         return ContainerGetAllOutputData(containerlist)

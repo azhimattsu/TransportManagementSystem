@@ -1,10 +1,9 @@
-from typing import Optional
 from sqlalchemy import and_
 from tms.domain.valueobjects import common, container
 from tms.domain.entities.dispatchinfo import DispatchInfoEntity
-from tms.domain.repositories.dispatchinfos_repository import DispatchInfosRepository
+from tms.domain.repositories.dispatchinfo_repository import DispatchInfosRepository
 
-import tms.mysqlinfrastructure.schemas.dispatchinfos as c
+import tms.mysqlinfrastructure.schemas.dispatchinfo as c
 import tms.mysqlinfrastructure.mysql_setting as s
 
 
@@ -17,9 +16,9 @@ class MySqlDispatchInfos(DispatchInfosRepository):
         results: list[DispatchInfoEntity] = []
         results.clear()
 
-        rows = s.session.query(c.DispatchInfos).all()
+        rows = s.session.query(c.DispatchInfo).all()
         for row in rows:
-            results.append(c.toEntity(row))
+            results.append(c.to_entity(row))
 
         return results
 
@@ -27,26 +26,26 @@ class MySqlDispatchInfos(DispatchInfosRepository):
         results: list[DispatchInfoEntity] = []
         results.clear()
 
-        rows = s.session.query(c.DispatchInfos).filter(and_(c.DispatchInfos.containerId == id.value, c.DispatchInfos.day == day)).all()
+        rows = s.session.query(c.DispatchInfo).filter(and_(c.DispatchInfo.container_id == id.value, c.DispatchInfo.day == day)).all()
 
         for row in rows:
-            results.append(c.toEntity(row))
+            results.append(c.to_entity(row))
 
         return results
 
     def create_data(self, dispatchinfo: DispatchInfoEntity):
         s.session.begin()
-        row = c.fromEntity(dispatchinfo)
+        row = c.from_entity(dispatchinfo)
         s.session.add(row)
         s.session.commit()
 
     def update_data(self, dispatchinfo: DispatchInfoEntity):
         s.session.begin()
-        found = s.session.query(c.DispatchInfos).filter(and_(c.DispatchInfos.containerId == dispatchinfo.containerId.value,
-                                                          c.DispatchInfos.day == dispatchinfo.day.value,
-                                                          c.DispatchInfos.index == dispatchinfo.index)).first()
+        found = s.session.query(c.DispatchInfo).filter(and_(c.DispatchInfo.container_id == dispatchinfo.container_id.value,
+                                                            c.DispatchInfo.day == dispatchinfo.day.value,
+                                                            c.DispatchInfo.index == dispatchinfo.index)).first()
         if found is None:
             return
 
-        found.importEntity(dispatchinfo)
+        found.import_entity(dispatchinfo)
         s.session.commit()

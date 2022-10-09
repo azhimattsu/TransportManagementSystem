@@ -8,46 +8,46 @@ from .containerdata import ContainerData
 class ContainerDataDto:
 
     @staticmethod
-    def fromEntity(container: ContainerEntity) -> ContainerData:
-        model = ContainerData(container.id.value,
-                              container.code.value,
+    def from_entity(container: ContainerEntity) -> ContainerData:
+        model = ContainerData(container.container_id.value,
+                              container.container_code.value,
                               container.type,
                               container.tw.value,
                               container.height.value,
                               container.size.value,
                               container.damage.value,
-                              container.createuser.value,
-                              container.updateuser.value,
+                              container.create_user.value,
+                              container.update_user.value,
                               container.create_at.getStr(),
                               container.update_at.getStr())
         return model
 
     @staticmethod
-    def toEntity(containerdata: ContainerData) -> ContainerEntity:
-        entity = ContainerEntity(container.Id(containerdata.id),
-                                 container.Code(containerdata.code),
+    def to_entity(containerdata: ContainerData) -> ContainerEntity:
+        entity = ContainerEntity(container.Id(containerdata.container_id),
+                                 container.Code(containerdata.container_code),
                                  container.Type(containerdata.type),
                                  container.TareWeight(containerdata.tw),
                                  container.Height(containerdata.height),
                                  container.Size(containerdata.size),
                                  container.Damage(containerdata.damage),
-                                 common.MailAddress(containerdata.createuser),
-                                 common.MailAddress(containerdata.updateuser),
+                                 common.MailAddress(containerdata.create_user),
+                                 common.MailAddress(containerdata.update_user),
                                  common.CreateDateTime(containerdata.create_at),
                                  common.CreateDateTime(containerdata.update_at))
         return entity
 
     @staticmethod
     def CreateEntity(containerdata: ContainerData) -> ContainerEntity:
-        entity = ContainerEntity(CreateContainerService.GetContainerId(),
-                                 container.Code(containerdata.code),
+        entity = ContainerEntity(CreateContainerService.get_containerid(),
+                                 container.Code(containerdata.container_code),
                                  container.Type(containerdata.type),
                                  container.TareWeight(containerdata.tw),
                                  container.Height(containerdata.height),
                                  container.Size(containerdata.size),
                                  container.Damage(containerdata.damage),
-                                 common.MailAddress(containerdata.createuser),
-                                 common.MailAddress(containerdata.updateuser),
+                                 common.MailAddress(containerdata.create_user),
+                                 common.MailAddress(containerdata.update_user),
                                  common.CreateDateTime(containerdata.create_at),
                                  common.CreateDateTime(containerdata.update_at))
         return entity
