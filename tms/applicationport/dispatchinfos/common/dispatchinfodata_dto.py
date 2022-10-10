@@ -11,7 +11,7 @@ class DispatchInfoDataDto:
     def from_entity(dispatchinfo: DispatchInfoEntity) -> DispatchInfoData:
         model = DispatchInfoData(dispatchinfo.container_id.value,
                                  dispatchinfo.day.getStr(),
-                                 dispatchinfo.index,
+                                 dispatchinfo.sort_id,
                                  dispatchinfo.order_id.value,
                                  dispatchinfo.working_type,
                                  dispatchinfo.contractor_type,
@@ -32,7 +32,7 @@ class DispatchInfoDataDto:
     def to_entity(dispatchinfodata: DispatchInfoData) -> DispatchInfoEntity:
         entity = DispatchInfoEntity(container.Id(dispatchinfodata.container_id),
                                     common.CreateDateTime(dispatchinfodata.day),
-                                    dispatchinfodata.index,
+                                    dispatchinfodata.sort_id,
                                     order.Id(dispatchinfodata.order_id),
                                     dispatchinfodata.working_type,
                                     dispatchinfodata.contractor_type,
@@ -54,7 +54,7 @@ class DispatchInfoDataDto:
     def CreateEntity(dispatchinfodata: DispatchInfoData) -> DispatchInfoEntity:
         entity = DispatchInfoEntity(container.Id(dispatchinfodata.container_id),
                                     common.CreateDateTime(dispatchinfodata.day),
-                                    dispatchinfodata.index,
+                                    dispatchinfodata.sort_id,
                                     order.Id(dispatchinfodata.order_id),
                                     dispatchinfodata.working_type,
                                     dispatchinfodata.contractor_type,

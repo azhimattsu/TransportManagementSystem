@@ -6,7 +6,7 @@ from datetime import datetime
 class DispatchInfoData:
     container_id: str
     day: str
-    index: int
+    sort_id: int
     order_id: str
     working_type: int
     contractor_type: int
@@ -25,7 +25,7 @@ class DispatchInfoData:
     def __init__(self,
                  container_id: str,
                  day: datetime,
-                 index: int,
+                 sort_id: int,
                  order_id: str,
                  working_type: int,
                  contractor_type: int,
@@ -42,7 +42,7 @@ class DispatchInfoData:
                  update_at: datetime):
         self.container_id = container_id
         self.day = day
-        self.index = index
+        self.sort_id = sort_id
         self.order_id = order_id
         self.working_type = working_type
         self.contractor_type = contractor_type

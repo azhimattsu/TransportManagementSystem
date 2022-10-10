@@ -9,7 +9,7 @@ from tms.domain.valueobjects import order
 class DispatchInfoEntity:
     container_id: container.Id
     day: common.CDateTime
-    index: int
+    sort_id: int
     order_id: order.Id
     working_type: dispatch.WorkingType
     contractor_type: dispatch.ContractorType
@@ -28,7 +28,7 @@ class DispatchInfoEntity:
     def __init__(self,
                  container_id: container.Id,
                  day: common.CDateTime,
-                 index: int,
+                 sort_id: int,
                  order_id: order.Id,
                  working_type: dispatch.WorkingType,
                  contractor_type: dispatch.ContractorType,
@@ -46,7 +46,7 @@ class DispatchInfoEntity:
 
         self.container_id = container_id
         self.day = day
-        self.index = index
+        self.sort_id = sort_id
         self.order_id = order_id
         self.working_type = working_type
         self.contractor_type = contractor_type

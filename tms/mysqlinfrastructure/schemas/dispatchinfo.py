@@ -14,7 +14,7 @@ class DispatchInfo(Base):
     __tablename__ = "dispatchinfo"
     container_id = Column(String(64), primary_key=True, nullable=False)
     day = Column(DateTime, primary_key=True, default=datetime.utcnow)
-    index = Column(Integer, primary_key=True, nullable=False)
+    sort_id = Column(Integer, primary_key=True, nullable=False)
     order_id = Column(String(64), nullable=False)
     working_type = Column(Integer, nullable=False)
     contractor_type = Column(Integer, nullable=False)
@@ -33,7 +33,7 @@ class DispatchInfo(Base):
     def import_entity(self, entity: DispatchInfoEntity):
         self.container_id = entity.container_id.value
         self.day = entity.day.value
-        self.index = entity.index
+        self.sort_id = entity.sort_id
         self.order_id = entity.order_id.value
         self.working_type = int(entity.working_type)
         self.contractor_type = int(entity.contractor_type)
@@ -53,7 +53,7 @@ def from_entity(entity: DispatchInfoEntity) -> DispatchInfo:
     target = DispatchInfo()
     target.container_id = entity.container_id.value
     target.day = entity.day.value
-    target.index = entity.index
+    target.sort_id = entity.sort_id
     target.order_id = entity.order_id.value
     target.working_type = int(entity.working_type)
     target.contractor_type = int(entity.contractor_type)
@@ -72,7 +72,7 @@ def from_entity(entity: DispatchInfoEntity) -> DispatchInfo:
 def to_entity(row: DispatchInfo) -> DispatchInfoEntity:
     target = DispatchInfoEntity(container.Id(row.container_id),
                                 common.CDateTime(row.day),
-                                row.index,
+                                row.sort_id,
                                 order.Id(row.order_id),
                                 dispatch.WorkingType(row.working_type),
                                 dispatch.ContractorType(row.contractor_type),

@@ -43,7 +43,7 @@ class MySqlDispatchInfos(DispatchInfosRepository):
         s.session.begin()
         found = s.session.query(c.DispatchInfo).filter(and_(c.DispatchInfo.container_id == dispatchinfo.container_id.value,
                                                             c.DispatchInfo.day == dispatchinfo.day.value,
-                                                            c.DispatchInfo.index == dispatchinfo.index)).first()
+                                                            c.DispatchInfo.sort_id == dispatchinfo.sort_id)).first()
         if found is None:
             return
 
