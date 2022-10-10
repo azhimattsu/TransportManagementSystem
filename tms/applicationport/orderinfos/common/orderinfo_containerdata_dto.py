@@ -13,7 +13,7 @@ class OrderInfoContainerDataDto:
 
         for item in containers:
             model = OrderInfoContainerData(item.order_id.value,
-                                           item.index,
+                                           item.sort_id,
                                            item.container_id.value,
                                            item.container_code.value,
                                            item.type,
@@ -39,7 +39,7 @@ class OrderInfoContainerDataDto:
 
         for item in orderinfocontainers:
             item = OrderInfoContainerEntity(order.Id(item.order_id),
-                                            item.index,
+                                            item.sort_id,
                                             container.Id(item.container_id),
                                             container.Code(item.container_code),
                                             container.Type(item.type),

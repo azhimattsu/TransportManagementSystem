@@ -5,7 +5,7 @@ from datetime import datetime
 @dataclass(init=False, eq=True)
 class OrderInfoContainerData:
     order_id: str
-    index: int
+    sort_id: int
     container_id: str
     container_code: str
     type: int
@@ -23,7 +23,7 @@ class OrderInfoContainerData:
 
     def __init__(self,
                  order_id: str,
-                 index: int,
+                 sort_id: int,
                  container_id: str,
                  container_code: str,
                  type: int,
@@ -39,7 +39,7 @@ class OrderInfoContainerData:
                  create_at: datetime,
                  update_at: datetime):
         self.order_id = order_id
-        self.index = index
+        self.sort_id = sort_id
         self.container_id = container_id
         self.container_code = container_code
         self.type = type
@@ -54,4 +54,4 @@ class OrderInfoContainerData:
         self.update_user = update_user
         self.create_at = create_at
         self.update_at = update_at
- 
+

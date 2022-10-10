@@ -1,16 +1,14 @@
 from dataclasses import dataclass
-from tms.domain.entities.container_parts import ContainerParts
 from tms.domain.valueobjects import container
 from tms.domain.valueobjects import common
 from tms.domain.valueobjects import order
 
 
 @dataclass(init=False, eq=True)
-class OrderInfoContainerEntity(ContainerParts):
+class OrderInfoContainerEntity():
     order_id: order.Id
-    index: int
+    sort_id: int
     container_id: container.Id
-    container_code: container.Code
     freight: int
     surcharge: int
     other: int
@@ -21,14 +19,8 @@ class OrderInfoContainerEntity(ContainerParts):
 
     def __init__(self,
                  order_id: order.Id,
-                 index: int,
+                 sort_id: int,
                  container_id: container.Id,
-                 container_code: container.Code,
-                 type: container.Type,
-                 tw: container.TareWeight,
-                 height: container.Height,
-                 size: container.Size,
-                 damage: container.Damage,
                  freight: int,
                  surcharge: int,
                  other: int,
@@ -36,11 +28,9 @@ class OrderInfoContainerEntity(ContainerParts):
                  update_user: common.MailAddress,
                  create_at: common.CDateTime,
                  update_at: common.CDateTime):
-        super().__init__(type, tw, height, size, damage)
         self.order_id = order_id
-        self.index = index
+        self.sort_id = sort_id
         self.container_id = container_id
-        self.container_code = container_code
         self.freight = freight
         self.surcharge = surcharge
         self.other = other
