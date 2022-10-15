@@ -1,6 +1,6 @@
 import copy
 from typing import Optional
-from tms.applicationport.containers.common.containerdata import ContainerData
+from tms.applicationport.container.shared.container_data import ContainerData
 
 
 class ContainerGetOutputData:

@@ -1,8 +1,8 @@
 import copy
-from tms.applicationport.containers.common.containerdata import ContainerData
+from tms.applicationport.container.shared.container_data import ContainerData
 
 
-class ContainerPutInputData:
+class ContainerPostInputData:
     container: ContainerData
 
     def __init__(self, container: ContainerData):

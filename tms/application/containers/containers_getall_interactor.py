@@ -1,12 +1,12 @@
-from tms.applicationport.containers.common.containerdata_dto import ContainerDataDto
-from tms.applicationport.containers.getall.container_getall_outputdata import ContainerGetAllOutputData
-from tms.domain.repositories.container_repository import ContainersRepository
+from tms.applicationport.container.shared.container_data_dto import ContainerDataDto
+from tms.applicationport.container.getall.container_getall_output_data import ContainerGetAllOutputData
+from tms.domain.models.container.container_repository import ContainerRepository
 
 
 class ContainersGetAllInteractor:
-    containerRep: ContainersRepository
+    containerRep: ContainerRepository
 
-    def __init__(self, rep: ContainersRepository):
+    def __init__(self, rep: ContainerRepository):
         self.containerRep = rep
 
     def fetch_all_data(self) -> ContainerGetAllOutputData:

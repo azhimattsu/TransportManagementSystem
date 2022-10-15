@@ -7,6 +7,7 @@ from .tareweight import TareWeight
 from .type import Type
 
 from .container_info import ContainerInfo
+from .container_repository import ContainerRepository
 
 print(ContainerId)
 print(ContainerCode)
@@ -17,3 +18,4 @@ print(TareWeight)
 print(Type)
 
 print(ContainerInfo)
+print(ContainerRepository)
