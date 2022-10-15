@@ -1,10 +1,10 @@
 
-from tms.domain.valueobjects import container
+from tms.domain.models import container
 import uuid
 
 
 class CreateContainerService:
 
     @staticmethod
-    def get_containerid() -> container.Id:
-        return container.Id(str(uuid.uuid4()))
+    def get_containerid() -> container.ContainerId:
+        return container.ContainerId(str(uuid.uuid4()))
