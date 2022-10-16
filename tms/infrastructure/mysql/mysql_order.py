@@ -33,7 +33,6 @@ class MySqlOrder(OrderRepository):
 
         detail = ob.to_entity(row)
 
-        print("step2")
         arrangements = self.find_container_data_byorderid(detail.order_id)
 
         return order.OrderInfo(detail.order_id, detail.slip_code, detail, arrangements)
@@ -68,4 +67,14 @@ class MySqlOrder(OrderRepository):
             return
 
         found.import_entity(orderdetail)
+        settings.session.commit()
+
+    def update_container_data(self, orderArrange: order.OrderArrangement):
+        settings.session.begin()
+        settings.session.query(oc.OrderContainerDataModel).filter(oc.OrderContainerDataModel.order_id == orderArrange.order_id.value).delete()
+
+        for item in orderArrange.containers:
+            row = oc.from_entity(item)
+            settings.session.add(row)
+
         settings.session.commit()

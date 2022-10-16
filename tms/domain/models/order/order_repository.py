@@ -30,3 +30,7 @@ class OrderRepository(metaclass=ABCMeta):
     @abstractclassmethod
     def update_detail_data(self, orderdetail: order.OrderDetail):
         pass
+
+    @abstractclassmethod
+    def update_container_data(self, orderArrange: order.OrderArrangement):
+        pass
