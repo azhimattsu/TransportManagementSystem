@@ -7,6 +7,10 @@ from tms.domain.models import order
 class OrderRepository(metaclass=ABCMeta):
 
     @abstractclassmethod
+    def fetch_detail_all_data(self) -> list[order.OrderDetail]:
+        pass
+
+    @abstractclassmethod
     def find_data_bycode(self,
                          code: order.SlipCode) -> Optional[order.OrderInfo]:
         pass

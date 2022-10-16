@@ -14,7 +14,7 @@ from tms.domain.models import shared
 
 
 class OrderDetailDataModel(Base):
-    __tablename__ = "orderinfo_base"
+    __tablename__ = "order_detail"
     order_id = Column(String(64), primary_key=True, nullable=False)
     slip_code = Column(String(10), nullable=False)
     customer_code = Column(String(10), nullable=False)

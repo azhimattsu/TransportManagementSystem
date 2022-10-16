@@ -11,6 +11,7 @@ from tms.application.orders.order_get_interactor import OrderGetInteractor
 from tms.application.orders.order_detail_post_interactor import OrderDetailPostInteractor
 from tms.application.orders.order_detail_get_interactor import OrderDetailGetInteractor
 from tms.application.orders.order_detail_put_interactor import OrderDetailPutInteractor
+from tms.application.orders.order_detail_getall_interactor import OrderDetailGetAllInteractor
 
 from tms.applicationport.order.shared.order_detail_data import OrderDetailData
 from tms.applicationport.order.post.order_detail_post_input_data import OrderDetailPostInputData
@@ -21,6 +22,12 @@ router = APIRouter()
 # containerRep = MySqlContainers()
 ordersRep = MySqlOrder()
 # dispatchInfoRep = MySqlDispatchInfos()
+
+@router.get("/orders/detail/")
+async def getOrderDetailAllData():
+    orderinfosGetUseCase = OrderDetailGetAllInteractor(rep=ordersRep)
+    orderinfos = orderinfosGetUseCase.fetch_all_data()
+    return orderinfos.orderinfos
 
 
 @router.get("/orders/{slip_code}")

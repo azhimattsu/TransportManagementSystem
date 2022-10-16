@@ -14,6 +14,16 @@ class MySqlOrder(OrderRepository):
     def __init__(self):
         pass
 
+    def fetch_detail_all_data(self) -> list[order.OrderDetail]:
+        results: list[order.OrderDetail] = []
+        results.clear()
+
+        rows = settings.session.query(ob.OrderDetailDataModel).all()
+        for row in rows:
+            results.append(ob.to_entity(row))
+
+        return results
+
     def find_data_bycode(self,
                          code: order.SlipCode) -> Optional[order.OrderInfo]:
 
