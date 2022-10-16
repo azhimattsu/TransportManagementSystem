@@ -12,13 +12,17 @@ class OrderRepository(metaclass=ABCMeta):
         pass
 
     @abstractclassmethod
-    def create_data(self, orderinfo: order.OrderInfo):
-        pass
-
-    @abstractclassmethod
-    def update_data(self, orderinfo: order.OrderInfo):
-        pass
-
-    @abstractclassmethod
     def find_container_data_byorderid(self, id: order.OrderId) -> Optional[order.OrderArrangement]:
+        pass
+
+    @abstractclassmethod
+    def find_detail_data_byid(self, id: order.OrderId) -> Optional[order.OrderDetail]:
+        pass
+
+    @abstractclassmethod
+    def create_detail_data(self, orderdetail: order.OrderDetail):
+        pass
+
+    @abstractclassmethod
+    def update_detail_data(self, orderdetail: order.OrderDetail):
         pass

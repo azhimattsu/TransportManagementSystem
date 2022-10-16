@@ -38,8 +38,24 @@ class MySqlOrder(OrderRepository):
 
         return order.OrderArrangement(id, targets)
 
-    def create_data(self, orderinfo: order.OrderInfo):
-        pass
+    def find_detail_data_byid(self, id: order.OrderId) -> Optional[order.OrderDetail]:
+        row = settings.session.query(ob.OrderDetailDataModel).filter(ob.OrderDetailDataModel.order_id == id.value).first()
+        if row is None:
+            return None
 
-    def update_data(self, orderinfo: order.OrderInfo):
-        pass
+        return ob.to_entity(row)
+
+    def create_detail_data(self, orderdetail: order.OrderDetail):
+        settings.session.begin()
+        row = ob.from_entity(orderdetail)
+        settings.session.add(row)
+        settings.session.commit()
+
+    def update_detail_data(self, orderdetail: order.OrderDetail):
+        settings.session.begin()
+        found = settings.session.query(ob.OrderDetailDataModel).filter(ob.OrderDetailDataModel.order_id == orderdetail.order_id.value).first()
+        if found is None:
+            return
+
+        found.import_entity(orderdetail)
+        settings.session.commit()
