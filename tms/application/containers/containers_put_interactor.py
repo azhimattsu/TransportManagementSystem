@@ -1,12 +1,12 @@
-from tms.applicationport.containers.common.containerdata_dto import ContainerDataDto
-from tms.applicationport.containers.put.container_put_inputdata import ContainerPutInputData
-from tms.domain.repositories.container_repository import ContainersRepository
+from tms.applicationport.container.shared.container_data_dto import ContainerDataDto
+from tms.applicationport.container.put.container_put_input_data import ContainerPutInputData
+from tms.domain.models.container.container_repository import ContainerRepository
 
 
 class ContainersPutInteractor:
-    containerRep: ContainersRepository
+    containerRep: ContainerRepository
 
-    def __init__(self, rep: ContainersRepository):
+    def __init__(self, rep: ContainerRepository):
         self.containerRep = rep
 
     def update_data(self, command: ContainerPutInputData):

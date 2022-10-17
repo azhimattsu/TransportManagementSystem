@@ -1,5 +1,5 @@
 import copy
-from tms.domain.helpers.exception import DomainException
+from tms.domain.models.shared.exception import DomainException
 
 
 class CustomHttpException(Exception):

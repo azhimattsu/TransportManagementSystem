@@ -18,7 +18,7 @@ from tms.applicationport.dispatchinfos.put.dispatchinfo_put_inputdata import Dis
 router = APIRouter()
 
 # containerRep = MySqlContainers()
-# orderInfoRep = MySqlOrderInfos()
+# orderInfoRep = MySqlOrder()
 dispatchInfoRep = MySqlDispatchInfos()
 
 

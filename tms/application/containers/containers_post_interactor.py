@@ -1,12 +1,12 @@
-from tms.applicationport.containers.common.containerdata_dto import ContainerDataDto
-from tms.applicationport.containers.post.container_post_inputdata import ContainerPostInputData
-from tms.domain.repositories.container_repository import ContainersRepository
+from tms.applicationport.container.shared.container_data_dto import ContainerDataDto
+from tms.applicationport.container.post.container_post_input_data import ContainerPostInputData
+from tms.domain.models.container.container_repository import ContainerRepository
 
 
 class ContainersPostInteractor:
-    containerRep: ContainersRepository
+    containerRep: ContainerRepository
 
-    def __init__(self, rep: ContainersRepository):
+    def __init__(self, rep: ContainerRepository):
         self.containerRep = rep
 
     def create_data(self, command: ContainerPostInputData):

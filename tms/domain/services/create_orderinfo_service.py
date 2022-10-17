@@ -1,10 +1,10 @@
 
-from tms.domain.valueobjects import order
+from tms.domain.models import order
 import uuid
 
 
 class CreateOrderInfoService:
 
     @staticmethod
-    def get_orderInfoid() -> order.Id:
-        return order.Id(str(uuid.uuid4()))
+    def get_orderInfoid() -> order.OrderId:
+        return order.OrderId(str(uuid.uuid4()))
