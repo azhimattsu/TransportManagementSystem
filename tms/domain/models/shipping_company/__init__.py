@@ -1,0 +1,12 @@
+from .shipping_company_id import ShippingCompanyId
+from .shipping_company_code import ShippingCompanyCode
+from .shipping_company_name import ShippingCompanyName
+from .shipping_company_info import ShippingCompanyInfo
+from .shipping_company_repository import ShippingCompanyRepository
+
+
+print(ShippingCompanyId)
+print(ShippingCompanyCode)
+print(ShippingCompanyName)
+print(ShippingCompanyInfo)
+print(ShippingCompanyRepository)
